@@ -1,0 +1,23 @@
+.btn{
+    border-radius:0;
+    border:none;
+    color:#fff;
+    padding:6px 11px;
+    font-size:calc(0.6rem + 0.4vw)
+}
+
+.btn-primary{
+    background-color: $red !important;
+}
+
+.btn-secondary{
+    background-color: $grey;
+}
+
+.btn-link{
+    color:$grey;
+    text-decoration: none;
+}
+.btn-link:hover{
+    text-decoration: underline;
+}
