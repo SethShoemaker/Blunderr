@@ -11,12 +11,24 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+    stats: {
+        children: true
+    }
+});
+
 mix
     .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
 
+    // Welcome
+    .sass('resources/sass/welcome.scss', 'public/css')
+
     // Auth
     .sass('resources/sass/auth/auth.scss', 'public/css/auth')
-    
-    
+
+    // Dashboard
+    .sass('resources/sass/dashboard.scss', 'public/css')
+    .js('resources/js/dashboard.js', 'public/js')
+
 ;

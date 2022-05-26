@@ -1,23 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blunderr</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-    <h1>Blunderr</h1>
 
-    <a href="{{ url('/login') }}">Login</a>
-    <a href="{{ url('/register') }}">Register</a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        Logout
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-</body>
-</html>
+@extends('layouts.app')
+@section('title', 'Blunderr')
+@section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+@endsection
+@section('content')
+    <nav id="navbar">
+        <div id="logo">
+            Blunderr
+        </div>
+        <div id="auth-links">
+            @guest
+                <a href="{{ url('/login') }}" class='btn btn-secondary'>Login</a>
+                <a href="{{ url('/register') }}" class='btn btn-primary'>Register</a>
+            @else
+                <a href="{{ route('dashboard.home') }}" class='btn btn-primary'>Enter Dashboard</a>
+            @endguest
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h1 class='display-1'>Blunderr</h1>
+        <section id="about" class='mt-4'> 
+            <h2>What is Blunderr?</h2>
+            <p>
+                Blunderr is a bug-tracking system built to make submitting help tickets easier for your clients. 
+                When you register a project with Blunderr, you will have the ability to send their help tickets directly from their application 
+                to your dashboard. From your dashboard you can edit the ticket, assign it to an agent, add comments a whole lot more! 
+            </p>
+        </section>
+    </div>
+@endsection

@@ -1,0 +1,68 @@
+@import './variables';
+
+form{
+    position: relative;
+
+    .form-group{
+        margin: 0 auto 20px auto;
+        width:95%;
+        margin-bottom:1rem;
+
+        label{
+            padding-bottom:5px;
+            font-size:calc(0.4rem + 0.6vw);
+        }
+
+        input,
+        input:focus,
+        textarea,
+        textarea:focus,
+        select,
+        select:focus{
+            border:1.5px solid $offblack;
+            border-radius:0;
+            outline:none !important;
+            box-shadow: none !important;
+            padding:5px 10px;
+            font-size:calc(0.4rem + 0.6vw);
+
+            &:focus{
+                border-color:$red;
+            }
+
+            &:disabled{
+                background-color:$lightgrey;
+            }
+        }
+
+        .checkbox{
+
+            label{
+                
+                display: flex;
+                align-items: center;
+
+                span{
+                    padding-left:0.3rem;
+                }
+            }
+        }
+    }
+}
+#form-buttons{
+    margin-top:2rem;
+    display: flex;
+    justify-content: space-between;
+
+    #buttons-right{
+        width:80%;
+    }
+
+    @media (max-width:300px){
+        .btn-link{
+            position: absolute;
+            bottom:-30px;
+            right:0;
+        }
+    }
+}

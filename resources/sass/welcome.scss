@@ -1,0 +1,34 @@
+@import './inc/_button';
+
+@import './inc/_variables';
+
+#navbar{
+    position:sticky;
+    width:100%;
+    height:60px;
+    background-color: $offblack;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+
+    #logo{
+        margin-left:2vw;
+        display:flex;
+        align-items: center;
+        font-size: calc(1.2rem + 0.6vw);
+        font-weight: 600;
+        color:#fff;
+        user-select:none;
+    }
+
+    #auth-links{
+        margin-right:2vw;
+        display:flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .btn{
+            margin-left:2vw;
+        }
+    }
+}
+

@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group mb-4" id="form-buttons">
-                <a href="{{ url('/') }}" class='btn btn-secondary'>Cancel</a>
+                <a href="{{ route('welcome') }}" class='btn btn-secondary'>Cancel</a>
                 <div>
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         Reset Password

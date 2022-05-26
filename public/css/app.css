@@ -11284,4 +11284,9 @@ textarea.form-control-lg {
 }
 body {
   font-family: "Noto Sans", sans-serif;
+  background-color: #f3f3f3;
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  display: none;
 }

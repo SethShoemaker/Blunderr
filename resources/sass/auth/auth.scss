@@ -1,15 +1,21 @@
-@import '../inc/variables';
+@import '../inc/_variables';
 
-@import '../inc/button.scss';
+@import '../inc/_button';
+
+@import '../inc/_form';
 
 body{
-    background-color: $grey;
+    background-color: $offblack;
 
     #auth-container{
         background-color: $lightgrey;
         width:50vw;
         margin:10vh auto;
         padding:4vh 4vw;
+
+        @media (max-width:600px){
+            width:90%;
+        }
 
         .auth-details{
             font-size:calc(0.6rem + 0.4vw);
@@ -21,60 +27,19 @@ body{
             display: flex;
             justify-content: flex-end;
         }
+
+        h1{
+            font-size: calc(1.375rem + 1.7vw);
+            margin-bottom:1rem;
+        }
         
-        form{
-
-            @media (max-width:600px){
-                width:90%;
-            }
-
-            h1{
-                font-size: calc(1.375rem + 1.7vw);
-                margin-bottom:2rem;
-            }
-
-            .form-group{
-                margin:auto;
-                width:95%;
-                margin-bottom:1rem;
-
-                label{
-                    padding-bottom:2px;
-                    font-size:calc(0.6rem + 0.4vw)
-                }
-
-                input,
-                input:focus{
-                    border:1.5px solid $grey;
-                    border-radius:0;
-                    outline:none;
-                    box-shadow: none;
-                    padding:5px 10px;
-                    font-size:calc(0.5rem + 0.4vw)
-                }
-
-                input:focus{
-                    border-color:$red;
-                }
-
-                .checkbox{
-
-                    label{
-                        
-                        display: flex;
-                        align-items: center;
-
-                        span{
-                            padding-left:0.3rem;
-                        }
-                    }
-                }
-            }
-            #form-buttons{
-                margin-top:2rem;
-                display: flex;
-                justify-content: space-between;
-            }
+        h2{
+            font-size:calc(0.7rem + 0.6vw);
+            margin-bottom:0.7rem;
+        }
+    
+        p{
+            font-size: calc(0.5rem + 0.5vw);
         }
     }
     

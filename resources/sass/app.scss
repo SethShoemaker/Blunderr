@@ -4,6 +4,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import './inc/_variables';
+
 body{
     font-family: 'Noto Sans', sans-serif;
+    background-color: $lightgrey;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        display:none;
+    }
 }
