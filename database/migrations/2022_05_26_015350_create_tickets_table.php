@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->foreignId('owner_id')->references('id')->on('users');
-            $table->string('password');
+            $table->foreignId('org_id')->references('id')->on('organizations');
+            $table->foreignId('project_id')->references('id')->on('projects');
+            $table->foreignId('client_id')->references('id')->on('users');
+            $table->string('subject');
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('tickets');
     }
 };

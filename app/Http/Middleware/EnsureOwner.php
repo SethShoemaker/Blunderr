@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureUserInOrg
+class EnsureOwner
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,8 @@ class EnsureUserInOrg
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::user()->org_id === null) {
-            return redirect()->route('organization.join');
+        if (Auth::user()->role_id > 5) {
+            return redirect()->route('dashboard.home');
         }
 
         return $next($request);

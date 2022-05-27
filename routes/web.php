@@ -23,10 +23,24 @@ Route::GET('/', function () {
 })->name('welcome');
 
 Route::prefix('organization')->name('organization.')->controller(OrganizationsController::class)->group(function () {
+
     Route::GET('/join', 'search')->name('search');
     Route::POST('/join', 'join')->name('join');
     Route::GET('/register', 'create')->name('create');
     Route::POST('/register', 'store')->name('store');
+
+    Route::middleware('org_check')->group(function () {
+
+        Route::middleware('co_owner_check')->group(function () {
+            Route::GET('/update', 'edit')->name('edit');
+            Route::POST('/update', 'update')->name('update');
+        });
+
+        Route::prefix('/password')->name('password.')->middleware('owner_check')->group(function () {
+            Route::GET('/reset', 'password_edit')->name('edit');
+            Route::POST('/reset', 'password_update')->name('update');
+        });
+    });
 });
 
 Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_check'])->group(function () {
@@ -34,19 +48,22 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
     Route::GET('', [HomeController::class, 'home'])->name('home');
 
     Route::prefix('members')->name('members.')->controller(MembersController::class)->group(function () {
+
         Route::GET('', 'index')->name('index');
         Route::GET('/{id}', 'show')->name('show');
     });
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketsController::class)->group(function () {
-        Route::GET('/', 'index')->name('index');
+
+        Route::GET('', 'index')->name('index');
         Route::GET('/{id}', 'show')->name('show');
     });
 
     Route::prefix('projects')->name('projects.')->controller(ProjectsController::class)->group(function () {
-        Route::GET('/', 'index')->name('index');
-        Route::GET('/{id}', 'show')->name('show');
+
+        Route::GET('', 'index')->name('index');
         Route::GET('/register', 'create')->name('create');
         Route::POST('/register', 'store')->name('store');
+        Route::GET('/{id}', 'show')->name('show');
     });
 });

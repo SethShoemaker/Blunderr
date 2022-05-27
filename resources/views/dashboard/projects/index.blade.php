@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
 @endsection
 @section('content')
     @include('dashboard.inc.nav')
@@ -10,9 +10,9 @@
             <h1>Projects</h1>
         </div>
         <div class="dashboard-body">
-            <div class="table-button">
-                @if ($admin)
-                    <a href="{{ route('dashboard.projects.create')}}" class='btn btn-primary'>Register New Project</a>    
+            <div class="dashboard-button">
+                @if ($canCreate)
+                    <a href="{{ route('dashboard.projects.create') }}" class='btn btn-primary'>Register New Project</a>    
                 @endif
             </div>
             <table class='table table-bordered'>
@@ -38,7 +38,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3">There are no registered projects</td>
+                            <td colspan="3">There are projects registered to {{ $orgName }}</td>
                         </tr>
                     @endforelse
                 </tbody>

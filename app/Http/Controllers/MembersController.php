@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,11 +20,12 @@ class MembersController extends Controller
             ->select(
                 'users.id',
                 'users.name',
+                'users.email',
                 'roles.title',
             )
             ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
             ->where('users.org_id', Auth::user()->org_id)
-            ->get();
+            ->paginate(60);
 
         return view('dashboard.members.index')->with('members', $members);
     }

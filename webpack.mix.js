@@ -28,7 +28,8 @@ mix
     .sass('resources/sass/auth/auth.scss', 'public/css/auth')
 
     // Dashboard
-    .sass('resources/sass/dashboard.scss', 'public/css')
+    .sass('resources/sass/dashboard/dashboard.scss', 'public/css/dashboard')
+    .sass('resources/sass/dashboard/home.scss', 'public/css/dashboard')
     .js('resources/js/dashboard.js', 'public/js')
 
 ;

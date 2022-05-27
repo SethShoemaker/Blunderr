@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrgRequest extends FormRequest
+class UpdateOrgPassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,23 +24,8 @@ class StoreOrgRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:35'],
-            'description' => ['nullable', 'max:1500'],
             'password' => ['required', 'max:255', 'same:password-confirm'],
             'password-confirm' => ['required', 'max:255', 'same:password'],
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'password.same' => 'Passwords do not match',
-            'password-confirm.same' => 'Passwords do not match',
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProjectRequest;
+use App\Models\Organization;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +17,19 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('org_id', Auth::user()->org_id)->get();
+        // implements global scope
+        $projects = Project::all();
+
+        $orgName = Organization::pluck('name')->first();
+
+        $canCreate = (Auth::user()->role_id >= 3) ? true : false;
 
         return view(
             'dashboard.projects.index',
             [
                 'projects' => $projects,
+                'orgName' => $orgName,
+                'canCreate' => $canCreate,
             ]
         );
     }
@@ -32,19 +41,28 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-
         return view('dashboard.projects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $orgID = Organization::pluck('id')->first();
+
+        $newProject = Project::create([
+            'org_id' => $orgID,
+            'name' => $validated->name,
+            'description' => $validated->description ?? null,
+        ]);
+
+        return redirect()->route('dashboard.projects.show', $newProject->id);
     }
 
     /**

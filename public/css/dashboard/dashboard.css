@@ -36,6 +36,7 @@ form .form-group {
 form .form-group label {
   padding-bottom: 5px;
   font-size: calc(0.4rem + 0.6vw);
+  width: 60%;
 }
 form .form-group input,
 form .form-group input:focus,
@@ -218,15 +219,17 @@ form .form-group .checkbox label span {
 }
 .dashboard-viewport .dashboard-header {
   height: calc(1rem + 4vw);
+  margin-bottom: 1rem;
 }
 .dashboard-viewport .dashboard-header h1 {
   font-size: calc(1.5rem + 2vw);
 }
-.dashboard-viewport .dashboard-body .table-button {
-  height: 10vh;
+.dashboard-viewport .dashboard-body .dashboard-button {
+  height: 5vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 2vh;
 }
 .dashboard-viewport .dashboard-body .table {
   border-color: #191919;

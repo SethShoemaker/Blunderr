@@ -7,10 +7,10 @@
     @include('dashboard.inc.nav')
     <div class="dashboard-viewport">
         <div class="dashboard-header">
-            <h1>{{ $member->name }}</h1>
+            <h1>{{ $project->name }}</h1>
         </div>
         <div class="dashboard-body">
-            {{ $member->title ?? 'unassigned' }}
+            Projcets
         </div>
     </div>
 @endsection

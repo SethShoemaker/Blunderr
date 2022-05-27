@@ -1,9 +1,14 @@
-@extends('layouts.app')
-@section('title', 'Register')
-@section('stylesheets')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blunderr</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel='stylesheet' href='{{ asset('css/auth/auth.css') }}'>
-@endsection
-@section('content')
+</head>
+<body>
     <div id="auth-container">
         <form method="POST" action="{{ route('organization.store') }}">
             <h1>Register Organization</h1>
@@ -61,5 +66,4 @@
             </div>
         </form>
     </div>
-    
-@endsection
+</body>

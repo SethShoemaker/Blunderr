@@ -21,15 +21,6 @@
         </div>
 
         <div class="form-group">
-            <label for="organization" class="col-form-label text-md-right">Organization</label>
-            <select name="organization" id="organization" class='form-control form-select'>
-                @foreach ($organizations as $organization)
-                    <option value="{{ $organization->id }}">{{ $organization->name }} ({{ $organization->id }})</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="form-group">
             <label for="description" class="col-form-label text-md-right">Description (optional)</label>
             <textarea id="description" rows='5' maxLength='1000' class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
             @if ($errors->has('description'))

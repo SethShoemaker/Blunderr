@@ -9,7 +9,7 @@
             <h1>Join Organization</h1>
             <h2>Step 3 of 3</h2>
             @csrf
-
+            
             <div class="form-group">
                 <label for="name" class="col-md-4 col-form-label text-md-right">Organization Name</label>
                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>

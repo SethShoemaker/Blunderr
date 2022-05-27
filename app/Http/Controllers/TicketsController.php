@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class TicketsController extends Controller
 {
@@ -17,13 +15,7 @@ class TicketsController extends Controller
     public function index()
     {
 
-        $tickets = DB::table('tickets')
-            ->select('tickets.*')
-            ->join('organizations', 'organizations.id', '=', 'tickets.org_id')
-            ->where('organizations.admins', 'LIKE', Auth::id())
-            ->orWhere('organizations.owner_id', Auth::id())
-            ->orWhere('assigned_user', Auth::id())
-            ->get();
+        $tickets = Ticket::all();
 
         return view(
             'dashboard.tickets.index',

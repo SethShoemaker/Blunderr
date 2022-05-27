@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Organization Members')
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
 @endsection
 @section('content')
     @include('dashboard.inc.nav')
@@ -13,20 +13,19 @@
             <table class='table table-bordered'>
                 <thead>
                     <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Role
-                        </th>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($members as $member)
+                    @foreach($members as $member)
                         <tr class='org-row' data-href='{{ route('dashboard.members.show', $member->id)}}'>
+                            <td>
+                                {{ $loop->iteration }}
+                            </td>
                             <td>
                                 {{ $member->id }}
                             </td>
@@ -34,14 +33,13 @@
                                 {{ $member->name }}
                             </td>
                             <td>
-                                {{ $member->role ?? 'unassigned' }}
+                                {{ $member->email }}
+                            </td>
+                            <td>
+                                {{ $member->title ?? 'unassigned' }}
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">There are no registered members</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>

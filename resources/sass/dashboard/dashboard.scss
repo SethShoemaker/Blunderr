@@ -1,8 +1,8 @@
-@import './inc/_variables';
+@import '../inc/_variables';
 
-@import './inc/_button';
+@import '../inc/_button';
 
-@import './inc/_form';
+@import '../inc/_form';
 
 #screen-overlay{
     display: none;
@@ -134,6 +134,7 @@
 
     .dashboard-header{
         height:calc(1rem + 4vw);
+        margin-bottom:1rem;
 
         h1{
             font-size: calc(1.5rem + 2vw);
@@ -142,11 +143,12 @@
 
     .dashboard-body{
 
-        .table-button{
-            height:10vh;
+        .dashboard-button{
+            height:5vh;
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            margin-bottom:2vh;
         }
 
         .table{
