@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('org_id')->references('id')->on('organizations');
             $table->foreignId('project_id')->references('id')->on('projects');
             $table->foreignId('client_id')->references('id')->on('users');
+            $table->foreignId('assigned_agent_id')->nullable()->references('id')->on('users');
             $table->string('subject');
             $table->text('body');
             $table->timestamps();

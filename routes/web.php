@@ -31,6 +31,8 @@ Route::prefix('organization')->name('organization.')->controller(OrganizationsCo
 
     Route::middleware('org_check')->group(function () {
 
+        Route::GET('/assignment', 'await')->name('await');
+
         Route::middleware('co_owner_check')->group(function () {
             Route::GET('/update', 'edit')->name('edit');
             Route::POST('/update', 'update')->name('update');
@@ -43,7 +45,7 @@ Route::prefix('organization')->name('organization.')->controller(OrganizationsCo
     });
 });
 
-Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_check'])->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_check', 'role_check'])->group(function () {
 
     Route::GET('', [HomeController::class, 'home'])->name('home');
 
@@ -51,6 +53,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
 
         Route::GET('', 'index')->name('index');
         Route::GET('/{id}', 'show')->name('show');
+        Route::POST('/{id}', 'update')->name('update')->middleware('co_owner_check');
     });
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketsController::class)->group(function () {

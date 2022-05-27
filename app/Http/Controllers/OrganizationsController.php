@@ -16,6 +16,44 @@ class OrganizationsController extends Controller
 {
 
     /**
+     * shows form for joining organization
+     *
+     * @return void
+     */
+    public function search()
+    {
+        return view('auth.organization.join');
+    }
+
+
+    /**
+     * adds user to organization
+     *
+     * @param  \App\Http\Requests\JoinOrgRequest $request
+     * @return void
+     */
+    public function join(JoinOrgRequest $request)
+    {
+        $validated = $request->validated();
+
+        $organization = Organization::withoutGlobalScope('userOrg')->where('name', $validated['name'])->first();
+
+        if (!$organization) {
+            return redirect()->back()->withErrors(['name' => 'Organization does not exist']);
+        }
+
+        if (!Hash::check($validated['password'], $organization->password)) {
+            return redirect()->back()->withInput()->withErrors(['password' => 'Password is incorrect']);
+        }
+
+        $user =  User::findOrFail(Auth::id());
+        $user->org_id = $organization->id;
+        $user->save();
+
+        return redirect()->route('dashboard.home');
+    }
+
+    /**
      * show organization create form
      *
      * @return view
@@ -51,6 +89,16 @@ class OrganizationsController extends Controller
         $user->save();
 
         return redirect()->route('dashboard.home');
+    }
+
+    /**
+     * wait for organization owners to assign role
+     *
+     * @return void
+     */
+    public function await()
+    {
+        return view('auth.organization.await');
     }
 
     /**
@@ -128,45 +176,6 @@ class OrganizationsController extends Controller
         $organization = Organization::first();
         $organization->password = Hash::make($validated['password']);
         $organization->save();
-
-        return redirect()->route('dashboard.home');
-    }
-
-
-    /**
-     * shows form for joining organization
-     *
-     * @return void
-     */
-    public function search()
-    {
-        return view('auth.organization.join');
-    }
-
-
-    /**
-     * adds user to organization
-     *
-     * @param  \App\Http\Requests\JoinOrgRequest $request
-     * @return void
-     */
-    public function join(JoinOrgRequest $request)
-    {
-        $validated = $request->validated();
-
-        $organization = Organization::withoutGlobalScope('userOrg')->where('name', $validated['name'])->first();
-
-        if (!$organization) {
-            return redirect()->back()->withErrors(['name' => 'Organization does not exist']);
-        }
-
-        if (!Hash::check($validated['password'], $organization->password)) {
-            return redirect()->back()->withInput()->withErrors(['password' => 'Password is incorrect']);
-        }
-
-        $user =  User::findOrFail(Auth::id());
-        $user->org_id = $organization->id;
-        $user->save();
 
         return redirect()->route('dashboard.home');
     }

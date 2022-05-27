@@ -1,6 +1,33 @@
-@import '../inc/_variables';
+@import '../inc/variables';
 
 .dashboard-viewport{
 
-    
+    .home-panels-container{
+        width:100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .home-panel{
+            text-align: center;
+            border:2px solid $offblack;
+            color:$offblack;
+            text-decoration: none;
+            height:calc(4rem + 4vw);
+            width:calc(3rem + 15vw);
+            padding-top:calc(0rem + 2vw);
+
+            strong{
+                font-size:calc(.9rem + 1vw);
+                font-weight: 500;
+                width:100%;
+            }
+
+            span{
+                font-size:calc(0.45rem + 0.6vw);
+                font-weight: 400;
+                width:100%;
+            }
+        }
+    }
 }

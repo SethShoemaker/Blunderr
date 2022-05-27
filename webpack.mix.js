@@ -32,4 +32,7 @@ mix
     .sass('resources/sass/dashboard/home.scss', 'public/css/dashboard')
     .js('resources/js/dashboard.js', 'public/js')
 
+        // Members
+        .sass('resources/sass/dashboard/members/show.scss', 'public/css/dashboard/members')
+
 ;

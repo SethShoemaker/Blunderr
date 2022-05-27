@@ -22,18 +22,18 @@
                             Name
                         </th>
                         <th>
-                            Organization
+                            Created
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($projects as $project)
-                        <tr class='org-row' data-href='{{ route('dashboard.projects.show', $ticket->id)}}'>
+                        <tr class='org-row' data-href='{{ route('dashboard.projects.show', $project->id)}}'>
                             <td>
                                 {{ $project->name }}
                             </td>
                             <td>
-                                {{ $project->organization }}
+                                {{ $project->created_at->format('m/d/y') }}
                             </td>
                         </tr>
                     @empty

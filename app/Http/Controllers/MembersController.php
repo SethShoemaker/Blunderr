@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MembersController extends Controller
 {
@@ -22,8 +24,10 @@ class MembersController extends Controller
                 'users.name',
                 'users.email',
                 'roles.title',
+                'projects.name AS project'
             )
             ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+            ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
             ->paginate(60);
 
@@ -49,22 +53,23 @@ class MembersController extends Controller
             ->where('users.id', $id)
             ->first();
 
-        return view('dashboard.members.show')->with('member', $member);
+        // Must be at least co owner
+        $canEdit = Auth::user()->role_id >= 4;
+
+        $roles = Role::all();
+
+        return view(
+            'dashboard.members.show',
+            [
+                'member' => $member,
+                'canEdit' => $canEdit,
+                'roles' => $roles,
+            ]
+        );
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the user.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -72,7 +77,7 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id;
     }
 
     /**

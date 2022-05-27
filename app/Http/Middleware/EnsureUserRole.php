@@ -6,10 +6,10 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureUserOrg
+class EnsureUserRole
 {
     /**
-     * Ensure user is in organization, if not display join screen.
+     * Ensure user has role, if not display waiting screen.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
@@ -18,8 +18,8 @@ class EnsureUserOrg
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::user()->org_id === null) {
-            return redirect()->route('organization.join');
+        if (Auth::user()->role_id === null) {
+            return redirect()->route('organization.await');
         }
 
         return $next($request);

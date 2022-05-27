@@ -58,8 +58,8 @@ class ProjectsController extends Controller
 
         $newProject = Project::create([
             'org_id' => $orgID,
-            'name' => $validated->name,
-            'description' => $validated->description ?? null,
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
         ]);
 
         return redirect()->route('dashboard.projects.show', $newProject->id);

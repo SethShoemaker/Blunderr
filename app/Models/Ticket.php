@@ -19,9 +19,20 @@ class Ticket extends Model
     ];
 
     /**
-     * The "booted" method of the model.
+     * Only get tickets that are assigned to agent
      *
+     * @param  mixed $query
      * @return void
+     */
+    public function agentAssigned($query)
+    {
+        return $query->where('assigned_user_id', Auth::id());
+    }
+
+    /**
+     * Only get tickets for user's organization
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     protected static function booted()
     {

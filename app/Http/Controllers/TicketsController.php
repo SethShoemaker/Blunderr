@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketsController extends Controller
 {
@@ -15,11 +17,24 @@ class TicketsController extends Controller
     public function index()
     {
 
+        $userRole = Auth::user()->role_id;
+        $userTitle = Role::where('id', $userRole)->select('title')->first();
+        $isManager = ($userRole >= 3) && ($userRole > 1);
+
+        if ($isManager) {
+            // Implements Global Scope
+            $tickets = Ticket::all();
+        } else {
+            // $tickets = Ticket::agentAssigned()->get();
+            $tickets = Ticket::all();
+        }
+
         $tickets = Ticket::all();
 
         return view(
             'dashboard.tickets.index',
             [
+                'userTitle' => $userTitle,
                 'tickets' => $tickets,
             ]
         );

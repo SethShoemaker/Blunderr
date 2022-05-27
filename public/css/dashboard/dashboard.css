@@ -218,11 +218,13 @@ form .form-group .checkbox label span {
   background-color: #c4c4c4;
 }
 .dashboard-viewport .dashboard-header {
-  height: calc(1rem + 4vw);
-  margin-bottom: 1rem;
+  margin-bottom: calc(1rem + 1vw);
 }
 .dashboard-viewport .dashboard-header h1 {
-  font-size: calc(1.5rem + 2vw);
+  font-size: calc(1rem + 2vw);
+}
+.dashboard-viewport .dashboard-body p {
+  font-size: calc(0.45rem + 0.6vw);
 }
 .dashboard-viewport .dashboard-body .dashboard-button {
   height: 5vh;

@@ -8,7 +8,7 @@
     @include('dashboard.inc.nav')
     <div class="dashboard-viewport">
         <div class="dashboard-header">
-            <h1>{{ $organization->name }}</h1>
+            <h1>{{ $heading }}</h1>
         </div>
         <div class="dashboard-body">
             @if ($canEdit)
@@ -16,15 +16,32 @@
                     <a href="{{ route('organization.edit')}}" class='btn btn-primary'>Update Organization</a>
                 </div>
             @endif
-            <p>{{ $organization->description }}</p>
-            <div class="home-panels">
-                <div class="home-panel">
-                    
-                </div>
+            <p>{{ $body }}</p>
+            <div class="home-panels-container">
+                @if($isClient)
+                    <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
+                        <strong>{{ $numTickets }}</strong>
+                        <br>
+                        <span>Tickets</span>
+                    </a>
+                @else
+                        <a href='{{route('dashboard.members.index') }}' class="home-panel">
+                            <strong>{{ $numMembers }}</strong>
+                            <br>
+                            <span>Members</span>
+                        </a>
+                        <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
+                            <strong>{{ $numTickets }}</strong>
+                            <br>
+                            <span>Tickets</span>
+                        </a>
+                        <a href='{{route('dashboard.projects.index') }}' class="home-panel">
+                            <strong>{{ $numProjects }}</strong>
+                            <br>
+                            <span>Projects</span>
+                        </a>
+                @endif
             </div>
-            <h2>{{ $numProjects }} Projects</h2>
-            <h2>{{ $numTickets }} Tickets</h2>
-            <h2>{{ $numMembers }} Members</h2>
         </div>
     </div>
 @endsection

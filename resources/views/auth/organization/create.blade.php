@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <label for="description" class="col-md-4 col-form-label text-md-right">Description (optional)</label>
-                    <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description') }}</textarea>
+                    <textarea id="description" rows='11' maxLength='1500' class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description') }}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('description') }}</strong>

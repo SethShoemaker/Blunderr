@@ -133,15 +133,18 @@
     }
 
     .dashboard-header{
-        height:calc(1rem + 4vw);
-        margin-bottom:1rem;
+        margin-bottom:calc(1rem + 1vw);
 
         h1{
-            font-size: calc(1.5rem + 2vw);
+            font-size: calc(1rem + 2vw);
         }
     }
 
     .dashboard-body{
+
+        p{
+            font-size:calc(0.45rem + 0.6vw);
+        }
 
         .dashboard-button{
             height:5vh;

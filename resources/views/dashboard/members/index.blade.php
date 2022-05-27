@@ -37,6 +37,9 @@
                             </td>
                             <td>
                                 {{ $member->title ?? 'unassigned' }}
+                                @if ($member->title === 'client')
+                                    ({{ $member->project }})
+                                @endif
                             </td>
                         </tr>
                     @endforeach
