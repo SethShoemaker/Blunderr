@@ -23,19 +23,11 @@
                 <tbody>
                     @foreach($members as $member)
                         <tr class='org-row' data-href='{{ route('dashboard.members.show', $member->id)}}'>
-                            <td>
-                                {{ $loop->iteration }}
-                            </td>
-                            <td>
-                                {{ $member->id }}
-                            </td>
-                            <td>
-                                {{ $member->name }}
-                            </td>
-                            <td>
-                                {{ $member->email }}
-                            </td>
-                            <td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $member->id }}</td>
+                            <td>{{ $member->name }}</td>
+                            <td>{{ $member->email }}</td>
+                            <td class='{{ $member->title ? '' : 'error' }}'>
                                 {{ $member->title ?? 'unassigned' }}
                                 @if ($member->title === 'client')
                                     ({{ $member->project }})
@@ -49,5 +41,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
 @endsection

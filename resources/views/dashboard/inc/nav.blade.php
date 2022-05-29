@@ -10,7 +10,6 @@
         <span id="logo">Blunderr</span>
     </div>
     <div id="sidebar-body">
-        {{ Auth::user()->name . Auth::user()->role_id }}
         @if( Auth::user()->role_id > 1)
             <a href="{{ route('dashboard.home') }}">Home</a>
             <a href='{{ route('dashboard.tickets.index') }}'>Tickets</a>

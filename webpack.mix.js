@@ -30,9 +30,10 @@ mix
     // Dashboard
     .sass('resources/sass/dashboard/dashboard.scss', 'public/css/dashboard')
     .sass('resources/sass/dashboard/home.scss', 'public/css/dashboard')
-    .js('resources/js/dashboard.js', 'public/js')
+    .js('resources/js/dashboard/dashboard.js', 'public/js/dashboard')
 
         // Members
         .sass('resources/sass/dashboard/members/show.scss', 'public/css/dashboard/members')
+        .js('resources/js/dashboard/members/show.js', 'public/js/dashboard/members')
 
 ;

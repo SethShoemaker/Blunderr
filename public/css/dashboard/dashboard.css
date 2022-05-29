@@ -36,7 +36,6 @@ form .form-group {
 form .form-group label {
   padding-bottom: 5px;
   font-size: calc(0.4rem + 0.6vw);
-  width: 60%;
 }
 form .form-group input,
 form .form-group input:focus,
@@ -146,11 +145,15 @@ form .form-group .checkbox label span {
   width: calc(10rem + 2vw);
   height: 100vh;
   background-color: #191919;
-  left: 0;
   top: 0;
   display: grid;
   grid-template-rows: 20vh 1fr;
   z-index: 3;
+}
+@media (min-width: 600px) {
+  #sidebar {
+    left: 0 !important;
+  }
 }
 @media (max-width: 600px) {
   #sidebar {
@@ -221,7 +224,14 @@ form .form-group .checkbox label span {
   margin-bottom: calc(1rem + 1vw);
 }
 .dashboard-viewport .dashboard-header h1 {
-  font-size: calc(1rem + 2vw);
+  font-size: calc(1.1rem + 2.6vw);
+}
+.dashboard-viewport .dashboard-body h2 {
+  margin-top: 2rem;
+  font-size: calc(0.9rem + 1.7vw);
+}
+.dashboard-viewport .dashboard-body h3 {
+  font-size: calc(0.65rem + 0.7vw);
 }
 .dashboard-viewport .dashboard-body p {
   font-size: calc(0.45rem + 0.6vw);
@@ -235,11 +245,14 @@ form .form-group .checkbox label span {
 }
 .dashboard-viewport .dashboard-body .table {
   border-color: #191919;
-  font-size: calc(0.4rem + 0.6vw);
+  font-size: calc(0.45rem + 0.6vw);
 }
 .dashboard-viewport .dashboard-body .table tbody .org-row {
   cursor: pointer;
 }
 .dashboard-viewport .dashboard-body .table tbody .org-row:hover {
   background-color: #dedede;
+}
+.dashboard-viewport .dashboard-body .table tbody .org-row .error {
+  color: #bd020b;
 }

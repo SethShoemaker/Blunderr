@@ -1,4 +1,48 @@
 @import '../../inc/variables';
 
+.dashboard-header{
+    span{
+        font-size: calc(0.7rem + 0.9vw);
+    }
+}
 
+.dashboard-body{
+    p{
+        padding:5px 0;
+    }
+
+    #edit-container{
+
+        form {
+            .form-group{
+                margin:0 0 16px 0;
+                display:flex;
+
+                label{
+                    font-size:calc(0.45rem + 0.6vw);
+                    margin-right:calc(0.5rem);
+                }
+
+                select{
+                    display: inline-block;
+                    min-width:100px;
+                    width:calc(6rem + 4vw);
+                }
+            }
+
+            #form-buttons{
+                justify-content: flex-start;
+                margin-top:25px;
+
+                a{
+                    margin-right:1rem;
+                }
+            }
+        }
+
+        #project-group{
+            display:none;
+        }
+    }
+}
 

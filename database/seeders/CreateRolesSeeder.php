@@ -28,10 +28,6 @@ class CreateRolesSeeder extends Seeder
         ]);
 
         Role::create([
-            'title' => 'co-owner'
-        ]);
-
-        Role::create([
             'title' => 'owner'
         ]);
     }

@@ -36,7 +36,6 @@ form .form-group {
 form .form-group label {
   padding-bottom: 5px;
   font-size: calc(0.4rem + 0.6vw);
-  width: 60%;
 }
 form .form-group input,
 form .form-group input:focus,

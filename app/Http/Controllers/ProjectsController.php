@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Organization;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,7 +74,24 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $project = Project::find($id);
+
+        // Must be at least manager
+        $canEdit = Auth::user()->role_id >= 3;
+
+        $clients = User::where('project_id', $id)
+            ->where('role_id', 1)
+            ->get();
+
+        return view(
+            'dashboard.projects.show',
+            [
+                'project' => $project,
+                'canEdit' => $canEdit,
+                'clients' => $clients,
+            ]
+        );
     }
 
     /**

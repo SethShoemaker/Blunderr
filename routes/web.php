@@ -53,12 +53,14 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
 
         Route::GET('', 'index')->name('index');
         Route::GET('/{id}', 'show')->name('show');
-        Route::POST('/{id}', 'update')->name('update')->middleware('co_owner_check');
+        Route::POST('/{id}', 'update')->name('update')->middleware('owner_check');
     });
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketsController::class)->group(function () {
 
         Route::GET('', 'index')->name('index');
+        Route::GET('/submit', 'create')->name('create')->middleware('client_check');
+        Route::POST('/submit', 'store')->name('store')->middleware('client_check');
         Route::GET('/{id}', 'show')->name('show');
     });
 
@@ -68,5 +70,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
         Route::GET('/register', 'create')->name('create');
         Route::POST('/register', 'store')->name('store');
         Route::GET('/{id}', 'show')->name('show');
+        Route::GET('/{id}/update', 'edit')->name('edit');
+        Route::POST('/{id', 'update')->name('update');
     });
 });

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Organization Projects')
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
 @endsection
@@ -18,23 +18,17 @@
             <table class='table table-bordered'>
                 <thead>
                     <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Created
-                        </th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Created</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($projects as $project)
                         <tr class='org-row' data-href='{{ route('dashboard.projects.show', $project->id)}}'>
-                            <td>
-                                {{ $project->name }}
-                            </td>
-                            <td>
-                                {{ $project->created_at->format('m/d/y') }}
-                            </td>
+                            <td>{{ $project->id }}</td>
+                            <td>{{ $project->name }}</td>
+                            <td>{{ $project->created_at->format('m/d/y') }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -47,5 +41,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
 @endsection

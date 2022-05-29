@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class EnsureOwner
 {
     /**
-     * Handle an incoming request.
+     * Ensure user is organization owner
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
@@ -18,7 +18,7 @@ class EnsureOwner
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::user()->role_id > 5) {
+        if (Auth::user()->role_id != 4) {
             return redirect()->route('dashboard.home');
         }
 

@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\Ticket;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreTicketRequest;
 
 class TicketsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * display tickets. 
+     * if user is agent, only show tickets assigned to user.
+     * If user is client allow them to submit tickets.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,23 +22,33 @@ class TicketsController extends Controller
     {
 
         $userRole = Auth::user()->role_id;
-        $userTitle = Role::where('id', $userRole)->select('title')->first();
-        $isManager = ($userRole >= 3) && ($userRole > 1);
+        $isClient = $userRole === 1;
 
-        if ($isManager) {
-            // Implements Global Scope
-            $tickets = Ticket::all();
-        } else {
-            // $tickets = Ticket::agentAssigned()->get();
-            $tickets = Ticket::all();
+        $ticketsQuery = DB::table('tickets')
+            ->select(
+                'projects.name AS project',
+                'tickets.id',
+                'tickets.subject',
+                'tickets.body',
+                'users.name AS client',
+                'tickets.created_at',
+            )
+            ->join('users', 'users.id', '=', 'tickets.client_id')
+            ->join('projects', 'projects.id', '=', 'tickets.project_id')
+            ->where('tickets.org_id', Auth::user()->org_id);
+
+
+        // If user is agent
+        if ($userRole === 2) {
+            $ticketsQuery->where('assigned_agent_id', '=', Auth::id())->get();
         }
 
-        $tickets = Ticket::all();
+        $tickets = $ticketsQuery->paginate(30);
 
         return view(
             'dashboard.tickets.index',
             [
-                'userTitle' => $userTitle,
+                'isClient' => $isClient,
                 'tickets' => $tickets,
             ]
         );
@@ -47,18 +61,32 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        //
+        $project = Project::find(Auth::user()->project_id)->pluck('name')->first();
+        return view('dashboard.tickets.create')->with(['project' => $project]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * submit new ticket
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTicketRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTicketRequest $request)
     {
-        //
+
+        $user = Auth::user();
+
+        $validated = $request->validated();
+
+        $ticket = Ticket::create([
+            'org_id' => $user->org_id,
+            'project_id' => $user->project_id,
+            'client_id' => $user->id,
+            'subject' => $validated['subject'],
+            'body' => $validated['body'],
+        ]);
+
+        return redirect()->route('dashboard.tickets.show', $ticket->id);
     }
 
     /**
@@ -69,7 +97,21 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = DB::table('tickets')
+            ->select([
+                'tickets.*',
+                'users.name AS client'
+            ])
+            ->join('users', 'users.id', '=', 'tickets.client_id')
+            ->where('tickets.id', $id)
+            ->first();
+
+        return view(
+            'dashboard.tickets.show',
+            [
+                'ticket' => $ticket,
+            ]
+        );
     }
 
     /**

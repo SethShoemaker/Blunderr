@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class EnsureCoOwner
+class EnsureClient
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class EnsureCoOwner
     public function handle(Request $request, Closure $next)
     {
 
-        if (Auth::user()->role_id <= 4) {
+        if (!Auth::user()->role_id === 1) {
             return redirect()->route('dashboard.home');
         }
 

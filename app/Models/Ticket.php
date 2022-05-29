@@ -14,19 +14,22 @@ class Ticket extends Model
     protected $fillable = [
         'org_id',
         'project_id',
+        'client_id',
+        'assigned_agent_id',
         'subject',
         'body',
     ];
 
     /**
-     * Only get tickets that are assigned to agent
+     * Scope a query to include client name.
      *
-     * @param  mixed $query
-     * @return void
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function agentAssigned($query)
+    public function getClientName($query)
     {
-        return $query->where('assigned_user_id', Auth::id());
+        return $query->select('users.name')
+            ->join('users', 'users.id', '=', 'tickets.client_id');
     }
 
     /**

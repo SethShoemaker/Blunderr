@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateMemberRequest;
+use App\Models\User;
 
 class MembersController extends Controller
 {
@@ -35,7 +36,8 @@ class MembersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show individual user.
+     * if owner, may edit user role or delete user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -46,24 +48,32 @@ class MembersController extends Controller
             ->select(
                 'users.id',
                 'users.name',
-                'roles.title',
+                'users.email',
+                'users.created_at',
+                'roles.title AS role',
+                'projects.name AS project'
             )
             ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+            ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
             ->where('users.id', $id)
             ->first();
 
         // Must be at least co owner
-        $canEdit = Auth::user()->role_id >= 4;
+        $canEdit = Auth::user()->role_id === 4;
 
-        $roles = Role::all();
+        if ($canEdit) {
+            $roles = Role::all();
+            $projects = Project::all();
+        }
 
         return view(
             'dashboard.members.show',
             [
                 'member' => $member,
                 'canEdit' => $canEdit,
-                'roles' => $roles,
+                'roles' => $roles ?? null,
+                'projects' => $projects ?? null,
             ]
         );
     }
@@ -71,13 +81,21 @@ class MembersController extends Controller
     /**
      * Update the user.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateMemberRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMemberRequest $request, $id)
     {
-        return $id;
+        $validated = $request->validated();
+
+        $user = User::find($id);
+
+        $user->role_id = $validated['role'];
+        $user->project_id = $validated['project'] ?? null;
+        $user->save();
+
+        return redirect()->route('dashboard.members.index');
     }
 
     /**

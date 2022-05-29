@@ -37,13 +37,22 @@ class CreateSethsUserSeeder extends Seeder
         $owner->role_id = $owner_role_id;
         $owner->save();
 
-        $submitter_role_id = Role::where('title', 'client')->pluck('id')->first();
 
         User::create([
             'name' => 'demo client',
             'org_id' => $organization->id,
-            'role_id' => $submitter_role_id,
             'email' => 'connect@sethshoemaker.com',
+            'email_verified_at' => '2022-05-26 02:04:01',
+            'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
+        ]);
+
+        $agent_role_id = Role::where('title', 'agent')->pluck('id')->first();
+
+        User::create([
+            'name' => 'demo agent',
+            'org_id' => $organization->id,
+            'role_id' => $agent_role_id,
+            'email' => 'sethshoemakerdev@gmail.com',
             'email_verified_at' => '2022-05-26 02:04:01',
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);

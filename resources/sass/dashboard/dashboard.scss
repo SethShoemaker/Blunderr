@@ -61,11 +61,14 @@
     width:calc(10rem + 2vw);
     height:100vh;
     background-color: $offblack;
-    left:0;
     top:0;
     display: grid;
     grid-template-rows: 20vh 1fr;
     z-index: 3;
+
+    @media (min-width:600px){
+        left:0 !important;
+    }
 
     @media (max-width:600px){
         width:calc(50px + 30vw);
@@ -136,11 +139,21 @@
         margin-bottom:calc(1rem + 1vw);
 
         h1{
-            font-size: calc(1rem + 2vw);
+            font-size: calc(1.1rem + 2.6vw);
         }
+                
     }
 
     .dashboard-body{
+
+        h2{
+            margin-top:2rem;
+            font-size: calc(0.9rem + 1.7vw);
+        }
+
+        h3{
+            font-size: calc(0.65rem + 0.7vw);
+        }
 
         p{
             font-size:calc(0.45rem + 0.6vw);
@@ -156,7 +169,7 @@
 
         .table{
             border-color:$offblack;
-            font-size:calc(0.4rem + 0.6vw);
+            font-size:calc(0.45rem + 0.6vw);
 
             tbody{
 
@@ -165,6 +178,9 @@
 
                     &:hover{
                         background-color: $mediumgrey;
+                    }
+                    .error{
+                        color:$red;
                     }
                 }
             }
