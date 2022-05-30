@@ -1,3 +1,6 @@
+@if ($errors->has('action'))
+    @include('dashboard.inc.error')
+@endif
 <div id="action-screen-overlay"></div>
 <div id="menu-screen-overlay">
     <img src="{{ asset('images/icons/close.svg') }}" alt="close menu" id='icon-close'>

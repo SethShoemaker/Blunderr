@@ -28,16 +28,4 @@ class UpdateMemberRequest extends FormRequest
             'project' => ['required_if:role,1']
         ];
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'role.required' => 'A message is required',
-        ];
-    }
 }

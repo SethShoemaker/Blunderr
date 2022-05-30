@@ -21,15 +21,14 @@ class Ticket extends Model
     ];
 
     /**
-     * Scope a query to include client name.
+     * find tickets of a certain project.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getClientName($query)
+    public function scopeOfProject($query, $id)
     {
-        return $query->select('users.name')
-            ->join('users', 'users.id', '=', 'tickets.client_id');
+        return $query->where('project_id', $id);
     }
 
     /**

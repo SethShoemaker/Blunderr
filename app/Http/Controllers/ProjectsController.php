@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Ticket;
 
 class ProjectsController extends Controller
 {
@@ -83,9 +84,7 @@ class ProjectsController extends Controller
         // Must be at least manager
         $canEdit = Auth::user()->role_id > 2;
 
-        $clients = User::where('project_id', $id)
-            ->where('role_id', 1)
-            ->get();
+        $clients = User::clientOf($project->id)->get();
 
         return view(
             'dashboard.projects.show',
@@ -138,6 +137,18 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
+
+        $numOutstandingTickets = Ticket::ofProject($id)->count();
+
+        if (Ticket::ofProject($id)->count() > 0) {
+            return redirect()->back()->withErrors(['action' => 'Project has ' . $numOutstandingTickets . ' outstanding ticket(s)']);
+        }
+
+        $numOutstandingClients = User::clientOf($id)->count();
+
+        if ($numOutstandingClients > 0) {
+            return redirect()->back()->withErrors(['action' => 'Project has ' . $numOutstandingClients . ' outstanding client(s)']);
+        }
 
         $project->delete();
 

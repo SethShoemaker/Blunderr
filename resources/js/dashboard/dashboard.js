@@ -14,6 +14,19 @@ $(function(){
         window.location = $(this).data("href");
     });
 
+    function hideErrorBox(){
+        $("#error-screen-overlay").hide();
+        $("#error-box").hide();
+    }
+
+    $('#error-dismiss').click(function(){
+        hideErrorBox();
+    })
+
+    $("#error-screen-overlay").click(function(){
+        hideErrorBox();
+    })
+
     function hideActionPrompt(){
         $("#action-screen-overlay").hide();
         $(".action-prompt").hide();

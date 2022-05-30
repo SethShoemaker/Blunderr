@@ -14,8 +14,11 @@
                 @if($canEdit)
                     <button class='btn btn-secondary m-2 action-button'>Delete Project</button>
                     <div id="delete-confirm" class='action-prompt'>
-                        <h1>Are you sure you want to delete this project?</h1>
-                        <div>
+                        <div class="action-content">
+                            <h1>Confirm</h1>
+                            <h2>Are you sure you want to delete this project?</h2>
+                        </div>
+                        <div class='action-buttons'>
                             <button class='btn btn-secondary action-cancel'>Cancel</button>
                             <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class='btn btn-primary'>Delete</a>
                             <form id="delete-form" action="{{ route('dashboard.projects.destroy', $project->id) }}" method="POST" class="d-none">@csrf @method('DELETE')</form> 

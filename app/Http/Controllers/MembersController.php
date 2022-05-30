@@ -92,7 +92,7 @@ class MembersController extends Controller
         $user = User::find($id);
 
         $user->role_id = $validated['role'];
-        $user->project_id = $validated['project'] ?? null;
+        $user->project_id = $validated['project'] ?? NULL;
         $user->save();
 
         return redirect()->route('dashboard.members.index');

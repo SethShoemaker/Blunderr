@@ -4,6 +4,49 @@
 
 @import '../inc/_form';
 
+#error-screen-overlay{
+    position: fixed;
+    height:100vh;
+    width:100vw;
+    top:0;
+    left:0;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    z-index: 4;
+}
+
+#error-box{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:calc(10rem + 30vw);
+    height:calc(10rem + 20vh);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    padding:3rem;
+
+    #error-content{
+        text-align: center;
+        height:90%;
+
+        h1{
+            font-size: calc(0.9rem + 1.7vw);
+            padding-bottom:1rem;
+        }
+        h2{
+            font-size: calc(0.5rem + 1.2vw);
+            font-weight: 300;
+        }
+    }
+
+    #error-dismiss-container{
+        display: flex;
+        justify-content: center;
+    }
+}
+
 #action-screen-overlay{
     position: fixed;
     height:100vh;
@@ -183,13 +226,20 @@
             z-index: 5;
             padding:3rem;
 
-            h1{
+            .action-content{
                 text-align: center;
-                font-size: calc(0.9rem + 1.7vw);
-                height:80%;
+                height:90%;
+
+                h1{
+                    font-size: calc(0.9rem + 1.7vw);
+                }
+                h2{
+                    font-size: calc(0.5rem + 1.2vw);
+                    font-weight: 300;
+                }
             }
 
-            div{
+            .action-buttons{
                 display: flex;
                 justify-content: space-between;
             }

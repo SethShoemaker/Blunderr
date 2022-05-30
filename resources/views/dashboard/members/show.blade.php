@@ -30,6 +30,7 @@
                         <div class="form-group" id='project-group'>
                             <label for="project" class="col-form-label text-md-right">Project:</label>
                             <select name="project" id="project" class="form-control form-select {{ $errors->has('project') ? ' is-invalid' : '' }}">
+                                <option selected disabled>Select</option>
                                 @forelse ($projects as $project)
                                     <option value='{{ $project->id}}'>{{ $project->name }}</option>
                                 @empty
