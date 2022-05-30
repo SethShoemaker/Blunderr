@@ -8,6 +8,7 @@
         <form method="POST" action="{{ route('organization.update') }}">
             <h1>Update Organization</h1>
             @csrf
+            @method('PATCH')
             <div class="form-group">
                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') ?? $organization->name }}" required autofocus>

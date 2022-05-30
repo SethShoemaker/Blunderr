@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProjectRequest;
-use App\Models\Organization;
-use App\Models\Project;
 use App\Models\User;
+use App\Models\Project;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectsController extends Controller
 {
@@ -21,8 +22,10 @@ class ProjectsController extends Controller
         // implements global scope
         $projects = Project::all();
 
+        // implements global scope
         $orgName = Organization::pluck('name')->first();
 
+        // Must be at least manager
         $canCreate = (Auth::user()->role_id >= 3) ? true : false;
 
         return view(
@@ -36,7 +39,7 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for registering a new project.
      *
      * @return \Illuminate\Http\Response
      */
@@ -46,7 +49,7 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created project.
      *
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
@@ -55,6 +58,7 @@ class ProjectsController extends Controller
     {
         $validated = $request->validated();
 
+        // implements global scope
         $orgID = Organization::pluck('id')->first();
 
         $newProject = Project::create([
@@ -67,18 +71,17 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified project.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-
         $project = Project::find($id);
 
         // Must be at least manager
-        $canEdit = Auth::user()->role_id >= 3;
+        $canEdit = Auth::user()->role_id > 2;
 
         $clients = User::where('project_id', $id)
             ->where('role_id', 1)
@@ -95,26 +98,35 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the project.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        return view('dashboard.projects.edit')->with('project', $project);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the project.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateProjectRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+
+        $project = Project::find($id);
+
+        $project->name = $validated['name'];
+        $project->description = $validated['description'];
+        $project->save();
+
+        return redirect()->route('dashboard.projects.show', $id);
     }
 
     /**
@@ -125,6 +137,10 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+
+        $project->delete();
+
+        return redirect()->route('dashboard.projects.index');
     }
 }

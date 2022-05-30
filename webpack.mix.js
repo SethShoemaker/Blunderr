@@ -36,4 +36,7 @@ mix
         .sass('resources/sass/dashboard/members/show.scss', 'public/css/dashboard/members')
         .js('resources/js/dashboard/members/show.js', 'public/js/dashboard/members')
 
+        // Projects
+        .js('resources/js/dashboard/projects/show.js', 'public/js/dashboard/projects')
+
 ;

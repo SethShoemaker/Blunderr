@@ -6,14 +6,30 @@ var __webpack_exports__ = {};
 $(function () {
   $(' #mobile-menu-open').on('click', function () {
     $('#sidebar').css('left', '0');
-    $('#screen-overlay').show();
+    $('#menu-screen-overlay').show();
   });
-  $('#screen-overlay').on('click', function () {
+  $('#menu-screen-overlay').on('click', function () {
     $('#sidebar').css('left', '-80vw');
-    $('#screen-overlay').hide();
+    $('#menu-screen-overlay').hide();
   });
   $(".org-row").on('click', function () {
     window.location = $(this).data("href");
+  });
+
+  function hideActionPrompt() {
+    $("#action-screen-overlay").hide();
+    $(".action-prompt").hide();
+  }
+
+  $(".action-button").click(function () {
+    $("#action-screen-overlay").show();
+    $(".action-prompt").css('display', 'flex');
+  });
+  $("#action-screen-overlay").click(function () {
+    hideActionPrompt();
+  });
+  $(".action-cancel").click(function () {
+    hideActionPrompt();
   });
 });
 /******/ })()

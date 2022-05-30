@@ -90,7 +90,18 @@ form .form-group .checkbox label span {
   }
 }
 
-#screen-overlay {
+#action-screen-overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 4;
+  display: none;
+}
+
+#menu-screen-overlay {
   display: none;
   position: fixed;
   height: 100vh;
@@ -101,11 +112,11 @@ form .form-group .checkbox label span {
   z-index: 2;
 }
 @media (min-width: 600px) {
-  #screen-overlay {
+  #menu-screen-overlay {
     display: none !important;
   }
 }
-#screen-overlay #icon-close {
+#menu-screen-overlay #icon-close {
   position: fixed;
   height: 40px;
   width: 40px;
@@ -201,7 +212,7 @@ form .form-group .checkbox label span {
   margin-left: calc(10rem + 2vw);
   height: 100vh;
   width: calc(100vw - (10rem + 2vw));
-  padding: calc(0.8rem + 0.5vh) calc(1.1rem + 0.5vw);
+  padding: calc(0.2rem + 3vh) calc(0.5rem + 4vw);
   overflow-y: scroll;
 }
 @media (max-width: 600px) {
@@ -227,7 +238,7 @@ form .form-group .checkbox label span {
   font-size: calc(1.1rem + 2.6vw);
 }
 .dashboard-viewport .dashboard-body h2 {
-  margin-top: 2rem;
+  margin: 2rem 0 1rem 0;
   font-size: calc(0.9rem + 1.7vw);
 }
 .dashboard-viewport .dashboard-body h3 {
@@ -235,6 +246,28 @@ form .form-group .checkbox label span {
 }
 .dashboard-viewport .dashboard-body p {
   font-size: calc(0.45rem + 0.6vw);
+}
+.dashboard-viewport .dashboard-body .action-prompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(10rem + 30vw);
+  height: calc(10rem + 20vh);
+  background-color: #fff;
+  display: none;
+  flex-direction: column;
+  z-index: 5;
+  padding: 3rem;
+}
+.dashboard-viewport .dashboard-body .action-prompt h1 {
+  text-align: center;
+  font-size: calc(0.9rem + 1.7vw);
+  height: 80%;
+}
+.dashboard-viewport .dashboard-body .action-prompt div {
+  display: flex;
+  justify-content: space-between;
 }
 .dashboard-viewport .dashboard-body .dashboard-button {
   height: 5vh;

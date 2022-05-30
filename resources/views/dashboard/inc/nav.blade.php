@@ -1,4 +1,5 @@
-<div id="screen-overlay">
+<div id="action-screen-overlay"></div>
+<div id="menu-screen-overlay">
     <img src="{{ asset('images/icons/close.svg') }}" alt="close menu" id='icon-close'>
 </div>
 <div id="mobile-menu">

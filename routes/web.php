@@ -33,14 +33,14 @@ Route::prefix('organization')->name('organization.')->controller(OrganizationsCo
 
         Route::GET('/assignment', 'await')->name('await');
 
-        Route::middleware('co_owner_check')->group(function () {
+        Route::middleware('owner_check')->group(function () {
             Route::GET('/update', 'edit')->name('edit');
-            Route::POST('/update', 'update')->name('update');
-        });
+            Route::PATCH('/update', 'update')->name('update');
 
-        Route::prefix('/password')->name('password.')->middleware('owner_check')->group(function () {
-            Route::GET('/reset', 'password_edit')->name('edit');
-            Route::POST('/reset', 'password_update')->name('update');
+            Route::prefix('passwords')->name('password.')->group(function () {
+                Route::GET('/reset', 'password_edit')->name('edit');
+                Route::PATCH('/reset', 'password_update')->name('update');
+            });
         });
     });
 });
@@ -53,7 +53,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
 
         Route::GET('', 'index')->name('index');
         Route::GET('/{id}', 'show')->name('show');
-        Route::POST('/{id}', 'update')->name('update')->middleware('owner_check');
+        Route::PATCH('/{id}', 'update')->name('update')->middleware('owner_check');
     });
 
     Route::prefix('tickets')->name('tickets.')->controller(TicketsController::class)->group(function () {
@@ -70,7 +70,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
         Route::GET('/register', 'create')->name('create');
         Route::POST('/register', 'store')->name('store');
         Route::GET('/{id}', 'show')->name('show');
-        Route::GET('/{id}/update', 'edit')->name('edit');
-        Route::POST('/{id', 'update')->name('update');
+        Route::GET('/{id}/update', 'edit')->name('edit')->middleware('manager_check');
+        Route::PATCH('/{id}/update', 'update')->name('update')->middleware('manager_check');
+        Route::DELETE('/{id}', 'destroy')->name('destroy')->middleware('manager_check');
     });
 });

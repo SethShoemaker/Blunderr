@@ -30,14 +30,14 @@ class MembersController extends Controller
             ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
             ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
-            ->paginate(60);
+            ->paginate(30);
 
         return view('dashboard.members.index')->with('members', $members);
     }
 
     /**
      * Show individual user.
-     * if owner, may edit user role or delete user
+     * owner may edit user role
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -59,7 +59,7 @@ class MembersController extends Controller
             ->where('users.id', $id)
             ->first();
 
-        // Must be at least co owner
+        // Must be owner
         $canEdit = Auth::user()->role_id === 4;
 
         if ($canEdit) {
@@ -96,16 +96,5 @@ class MembersController extends Controller
         $user->save();
 
         return redirect()->route('dashboard.members.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

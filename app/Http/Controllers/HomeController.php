@@ -18,10 +18,6 @@ class HomeController extends Controller
 
         if ($isClient) {
 
-            if (Auth::user()->project_id === null) {
-                return redirect()->route('organization.await');
-            }
-
             $clientProjectID = Auth::user()->project_id;
             $clientProject = Project::find($clientProjectID);
 

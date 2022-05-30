@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'org_check' => \App\Http\Middleware\EnsureUserOrg::class,
         'role_check' => \App\Http\Middleware\EnsureUserRole::class,
         'client_check' => \App\Http\Middleware\EnsureClient::class,
+        'manager_check' => \App\Http\Middleware\EnsureManager::class,
         'owner_check' => \App\Http\Middleware\EnsureOwner::class,
     ];
 }

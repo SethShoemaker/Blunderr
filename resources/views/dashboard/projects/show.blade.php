@@ -12,6 +12,15 @@
         <div class="dashboard-body">
             <div class="dashboard-button">
                 @if($canEdit)
+                    <button class='btn btn-secondary m-2 action-button'>Delete Project</button>
+                    <div id="delete-confirm" class='action-prompt'>
+                        <h1>Are you sure you want to delete this project?</h1>
+                        <div>
+                            <button class='btn btn-secondary action-cancel'>Cancel</button>
+                            <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class='btn btn-primary'>Delete</a>
+                            <form id="delete-form" action="{{ route('dashboard.projects.destroy', $project->id) }}" method="POST" class="d-none">@csrf @method('DELETE')</form> 
+                        </div>
+                    </div>
                     <a href="{{ route('dashboard.projects.edit', $project->id) }}" class='btn btn-primary'>Edit Project</a>
                 @endif
             </div>
@@ -28,14 +37,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($clients as $client)
+                    @forelse ($clients as $client)
                         <tr class='org-row' data-href='{{ route('dashboard.members.show', $client->id)}}'>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $client->id }}</td>
                             <td>{{ $client->name }}</td>
                             <td>{{ $client->email }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4">There are no clients registered to this project</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -43,4 +56,5 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/dashboard/dashboard.js') }}"></script>
+    <script src="{{ asset('js/dashboard/projects/show.js') }}"></script>
 @endsection

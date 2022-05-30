@@ -17,6 +17,7 @@
                 <div id="edit-container">
                     <form action="{{ route('dashboard.members.update', $member->id) }}" method='POST' id='edit-form'>
                         @csrf
+                        @method('PATCH')
                         <div class="form-group">
                             <label for="role" class="col-form-label text-md-right">Role:</label>
                             <select name="role" id="role" class="form-control form-select {{ $errors->has('role') ? ' is-invalid' : '' }}">

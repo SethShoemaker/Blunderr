@@ -108,15 +108,11 @@ class OrganizationsController extends Controller
      */
     public function edit()
     {
-        $user =  User::findOrFail(Auth::id());
-
-        if ($user->role >= 3) {
-            abort(403);
-        }
+        $user =  User::find(Auth::id());
 
         $organization = Organization::first();
 
-        $canResetPass = $user->role_id === 5 ? true : false;
+        $canResetPass = $user->role_id === 4 ? true : false;
 
         return view(
             'auth.organization.edit',
@@ -137,6 +133,7 @@ class OrganizationsController extends Controller
     {
         $validated = $request->validated();
 
+        // Implements global scope
         $organization = Organization::first();
 
         $organization->name = $validated['name'];

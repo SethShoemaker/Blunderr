@@ -38,7 +38,7 @@ class TicketsController extends Controller
             ->where('tickets.org_id', Auth::user()->org_id);
 
 
-        // If user is agent
+        // If user is agent, only display assigned tickets
         if ($userRole === 2) {
             $ticketsQuery->where('assigned_agent_id', '=', Auth::id())->get();
         }
@@ -55,7 +55,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new ticket.
      *
      * @return \Illuminate\Http\Response
      */

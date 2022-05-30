@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('organization.password.update') }}">
             <h1>Reset Password</h1>
             @csrf
-
+            @method('PATCH')
             <div class="form-group">
                 <label for="password" class="col-md-4 col-form-label text-md-right">New Organization Password</label>
                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
