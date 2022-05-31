@@ -23,6 +23,7 @@ class HomeController extends Controller
 
             $heading = $clientProject->name;
             $body = $clientProject->description;
+            $created_at = $clientProject->created_at;
 
             // Implements global scope
             $numTickets = Ticket::where('project_id', $clientProjectID)->count();
@@ -33,6 +34,7 @@ class HomeController extends Controller
 
             $heading = $organization->name;
             $body = $organization->description;
+            $created_at = $organization->created_at;
 
             // Implements global scope
             $numTickets = Ticket::count();
@@ -51,6 +53,7 @@ class HomeController extends Controller
             [
                 'isClient' => $isClient,
                 'heading' => $heading,
+                'created_at' => $created_at,
                 'body' => $body,
                 'numTickets' => $numTickets,
                 'numProjects' => $numProjects ?? null,

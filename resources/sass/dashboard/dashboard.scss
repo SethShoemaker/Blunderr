@@ -167,7 +167,6 @@
     margin-left: calc(10rem + 2vw);
     height:100vh;
     width:calc(100vw - (10rem + 2vw));
-    padding:calc(0.2rem + 3vh) calc(0.5rem + 4vw);
     overflow-y: scroll;
 
     @media (max-width:600px){
@@ -189,87 +188,107 @@
         background-color: $darkgrey;
     }
 
-    .dashboard-header{
-        margin-bottom:calc(1rem + 1vw);
-
-        h1{
-            font-size: calc(1.1rem + 2.6vw);
+    .dashboard-card{
+        margin:2rem 2rem;
+        @media (max-width:300px) {
+            margin:1rem;
         }
-                
-    }
+        border:2px solid $offblack;
+        border-radius: calc(0.5rem + 1vw);
+        overflow: scroll;
+        background-color: #fff;
 
-    .dashboard-body{
+        .dashboard-header{
+            padding:1rem 2rem;
+            background-color: $offblack;
+            color:#fff;
 
-        h2{
-            margin:2rem 0 1rem 0;
-            font-size: calc(0.9rem + 1.7vw);
-        }
-
-        h3{
-            font-size: calc(0.65rem + 0.7vw);
-        }
-
-        p{
-            font-size:calc(0.45rem + 0.6vw);
-        }
-
-        .action-prompt{
-            position: fixed;
-            top:50%;
-            left:50%;
-            transform: translate(-50%,-50%);
-            width:calc(10rem + 30vw);
-            height:calc(10rem + 20vh);
-            background-color: #fff;
-            display: none;
-            flex-direction: column;
-            z-index: 5;
-            padding:3rem;
-
-            .action-content{
-                text-align: center;
-                height:90%;
-
-                h1{
-                    font-size: calc(0.9rem + 1.7vw);
-                }
-                h2{
-                    font-size: calc(0.5rem + 1.2vw);
-                    font-weight: 300;
-                }
+    
+            h1{
+                font-size: calc(1.1rem + 2.6vw);
             }
 
-            .action-buttons{
+            p{
+                font-size:calc(0.5rem + 0.6vw);
+            }
+                    
+        }
+    
+        .dashboard-body{
+            padding:2rem;
+            margin-bottom:10vh;
+    
+            h2{
+                font-size: calc(0.9rem + 1.7vw);
+            }
+    
+            h3{
+                font-size: calc(0.65rem + 0.7vw);
+            }
+    
+            p{
+                font-size:calc(0.45rem + 0.6vw);
+            }
+    
+            .action-prompt{
+                position: fixed;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+                width:calc(10rem + 30vw);
+                height:calc(10rem + 20vh);
+                background-color: #fff;
+                display: none;
+                flex-direction: column;
+                z-index: 5;
+                padding:3rem;
+    
+                .action-content{
+                    text-align: center;
+                    height:90%;
+    
+                    h1{
+                        font-size: calc(0.9rem + 1.7vw);
+                    }
+                    h2{
+                        font-size: calc(0.5rem + 1.2vw);
+                        font-weight: 300;
+                    }
+                }
+    
+                .action-buttons{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+    
+            .dashboard-button{
+                height:5vh;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
+                align-items: center;
+                margin-bottom:2vh;
             }
-        }
-
-        .dashboard-button{
-            height:5vh;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom:2vh;
-        }
-
-        .table{
-            border-color:$offblack;
-            font-size:calc(0.45rem + 0.6vw);
-
-            tbody{
-
-                .org-row{
-                    cursor: pointer;
-
-                    &:hover{
-                        background-color: $mediumgrey;
-                    }
-                    .error{
-                        color:$red;
+    
+            .table{
+                border-color:$offblack;
+                font-size:calc(0.45rem + 0.6vw);
+    
+                tbody{
+    
+                    .org-row{
+                        cursor: pointer;
+    
+                        &:hover{
+                            background-color: $mediumgrey;
+                        }
+                        .error{
+                            color:$red;
+                        }
                     }
                 }
             }
         }
+
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Models\User;
+use App\Models\userRole;
 
 class MembersController extends Controller
 {
@@ -24,10 +24,10 @@ class MembersController extends Controller
                 'users.id',
                 'users.name',
                 'users.email',
-                'roles.title',
+                'user_roles.title',
                 'projects.name AS project'
             )
-            ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+            ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
             ->paginate(30);
@@ -50,10 +50,10 @@ class MembersController extends Controller
                 'users.name',
                 'users.email',
                 'users.created_at',
-                'roles.title AS role',
+                'user_roles.title AS role',
                 'projects.name AS project'
             )
-            ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+            ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
             ->where('users.id', $id)
@@ -63,7 +63,7 @@ class MembersController extends Controller
         $canEdit = Auth::user()->role_id === 4;
 
         if ($canEdit) {
-            $roles = Role::all();
+            $roles = userRole::all();
             $projects = Project::all();
         }
 

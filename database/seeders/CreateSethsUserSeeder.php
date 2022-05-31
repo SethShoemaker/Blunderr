@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use App\Models\User;
 use App\Models\Organization;
+use App\Models\userRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,7 +32,7 @@ class CreateSethsUserSeeder extends Seeder
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);
 
-        $owner_role_id = Role::where('title', 'owner')->pluck('id')->first();
+        $owner_role_id = userRole::where('title', 'owner')->pluck('id')->first();
         $owner->org_id = $organization->id;
         $owner->role_id = $owner_role_id;
         $owner->save();
@@ -46,7 +46,7 @@ class CreateSethsUserSeeder extends Seeder
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);
 
-        $agent_role_id = Role::where('title', 'agent')->pluck('id')->first();
+        $agent_role_id = userRole::where('title', 'agent')->pluck('id')->first();
 
         User::create([
             'name' => 'demo agent',

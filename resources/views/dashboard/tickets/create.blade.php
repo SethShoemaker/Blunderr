@@ -37,7 +37,7 @@
 
         <div class="form-group mb-4" id="form-buttons">
             <a href="{{ route('dashboard.tickets.index') }}" class='btn btn-secondary'>Cancel</a>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>

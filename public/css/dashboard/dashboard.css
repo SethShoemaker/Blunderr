@@ -252,7 +252,6 @@ form .form-group .checkbox label span {
   margin-left: calc(10rem + 2vw);
   height: 100vh;
   width: calc(100vw - (10rem + 2vw));
-  padding: calc(0.2rem + 3vh) calc(0.5rem + 4vw);
   overflow-y: scroll;
 }
 @media (max-width: 600px) {
@@ -271,23 +270,43 @@ form .form-group .checkbox label span {
   width: 10px;
   background-color: #c4c4c4;
 }
-.dashboard-viewport .dashboard-header {
-  margin-bottom: calc(1rem + 1vw);
+.dashboard-viewport .dashboard-card {
+  margin: 2rem 2rem;
+  border: 2px solid #191919;
+  border-radius: calc(0.5rem + 1vw);
+  overflow: scroll;
+  background-color: #fff;
 }
-.dashboard-viewport .dashboard-header h1 {
+@media (max-width: 300px) {
+  .dashboard-viewport .dashboard-card {
+    margin: 1rem;
+  }
+}
+.dashboard-viewport .dashboard-card .dashboard-header {
+  padding: 1rem 2rem;
+  background-color: #191919;
+  color: #fff;
+}
+.dashboard-viewport .dashboard-card .dashboard-header h1 {
   font-size: calc(1.1rem + 2.6vw);
 }
-.dashboard-viewport .dashboard-body h2 {
-  margin: 2rem 0 1rem 0;
+.dashboard-viewport .dashboard-card .dashboard-header p {
+  font-size: calc(0.5rem + 0.6vw);
+}
+.dashboard-viewport .dashboard-card .dashboard-body {
+  padding: 2rem;
+  margin-bottom: 10vh;
+}
+.dashboard-viewport .dashboard-card .dashboard-body h2 {
   font-size: calc(0.9rem + 1.7vw);
 }
-.dashboard-viewport .dashboard-body h3 {
+.dashboard-viewport .dashboard-card .dashboard-body h3 {
   font-size: calc(0.65rem + 0.7vw);
 }
-.dashboard-viewport .dashboard-body p {
+.dashboard-viewport .dashboard-card .dashboard-body p {
   font-size: calc(0.45rem + 0.6vw);
 }
-.dashboard-viewport .dashboard-body .action-prompt {
+.dashboard-viewport .dashboard-card .dashboard-body .action-prompt {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -300,38 +319,38 @@ form .form-group .checkbox label span {
   z-index: 5;
   padding: 3rem;
 }
-.dashboard-viewport .dashboard-body .action-prompt .action-content {
+.dashboard-viewport .dashboard-card .dashboard-body .action-prompt .action-content {
   text-align: center;
   height: 90%;
 }
-.dashboard-viewport .dashboard-body .action-prompt .action-content h1 {
+.dashboard-viewport .dashboard-card .dashboard-body .action-prompt .action-content h1 {
   font-size: calc(0.9rem + 1.7vw);
 }
-.dashboard-viewport .dashboard-body .action-prompt .action-content h2 {
+.dashboard-viewport .dashboard-card .dashboard-body .action-prompt .action-content h2 {
   font-size: calc(0.5rem + 1.2vw);
   font-weight: 300;
 }
-.dashboard-viewport .dashboard-body .action-prompt .action-buttons {
+.dashboard-viewport .dashboard-card .dashboard-body .action-prompt .action-buttons {
   display: flex;
   justify-content: space-between;
 }
-.dashboard-viewport .dashboard-body .dashboard-button {
+.dashboard-viewport .dashboard-card .dashboard-body .dashboard-button {
   height: 5vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 2vh;
 }
-.dashboard-viewport .dashboard-body .table {
+.dashboard-viewport .dashboard-card .dashboard-body .table {
   border-color: #191919;
   font-size: calc(0.45rem + 0.6vw);
 }
-.dashboard-viewport .dashboard-body .table tbody .org-row {
+.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row {
   cursor: pointer;
 }
-.dashboard-viewport .dashboard-body .table tbody .org-row:hover {
+.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row:hover {
   background-color: #dedede;
 }
-.dashboard-viewport .dashboard-body .table tbody .org-row .error {
+.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row .error {
   color: #bd020b;
 }

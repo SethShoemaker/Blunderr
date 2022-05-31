@@ -7,24 +7,26 @@
 @section('content')
     @include('dashboard.inc.nav')
     <div class="dashboard-viewport">
-        <div class="dashboard-header">
-            <h1>{{ $heading }}</h1>
-        </div>
-        <div class="dashboard-body">
-            @if ($canEdit)
-                <div class="dashboard-button">
-                    <a href="{{ route('organization.edit')}}" class='btn btn-primary'>Update Organization</a>
-                </div>
-            @endif
-            <p>{{ $body }}</p>
-            <div class="home-panels-container">
-                @if($isClient)
-                    <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
-                        <strong>{{ $numTickets }}</strong>
-                        <br>
-                        <span>Tickets</span>
-                    </a>
-                @else
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <h1>{{ $heading }}</h1>
+                <p>Registered on {{ date('m-d-Y', strtotime($created_at)) }}</p>
+            </div>
+            <div class="dashboard-body">
+                @if ($canEdit)
+                    <div class="dashboard-button">
+                        <a href="{{ route('organization.edit')}}" class='btn btn-primary'>Update Organization</a>
+                    </div>
+                @endif
+                <p>{{ $body }}</p>
+                <div class="home-panels-container">
+                    @if($isClient)
+                        <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
+                            <strong>{{ $numTickets }}</strong>
+                            <br>
+                            <span>Tickets</span>
+                        </a>
+                    @else
                         <a href='{{route('dashboard.members.index') }}' class="home-panel">
                             <strong>{{ $numMembers }}</strong>
                             <br>
@@ -40,7 +42,8 @@
                             <br>
                             <span>Projects</span>
                         </a>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     </div>

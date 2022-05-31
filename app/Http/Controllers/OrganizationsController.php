@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +10,7 @@ use App\Http\Requests\JoinOrgRequest;
 use App\Http\Requests\StoreOrgRequest;
 use App\Http\Requests\UpdateOrgPassRequest;
 use App\Http\Requests\UpdateOrgRequest;
+use App\Models\userRole;
 
 class OrganizationsController extends Controller
 {
@@ -80,7 +80,7 @@ class OrganizationsController extends Controller
             'owner_id' => Auth::id(),
             'password' => Hash::make($validated['password']),
         ]);
-        $role_id = Role::where('title', 'owner')->pluck('id')->first();
+        $role_id = userRole::where('title', 'owner')->pluck('id')->first();
 
         $user =  User::findOrFail(Auth::id());
 

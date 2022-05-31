@@ -6,13 +6,16 @@
 @section('content')
     @include('dashboard.inc.nav')
     <div class="dashboard-viewport">
-        <div class="dashboard-header">
-            <h1>Ticket</h1>
-        </div>
-        <div class="dashboard-body">
-            {{ $ticket->subject }}
-            {{ $ticket->body }}
-            {{ $ticket->client }}
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <h1>Ticket</h1>
+                <p>Submitted on {{ date('m-d-Y', strtotime($ticket->created_at)) }}</p>
+            </div>
+            <div class="dashboard-body">
+                <h2>Subject: {{ $ticket->subject }}</h2>
+                <h3>Client: {{ $ticket->client }}</h3>
+                <p>{{ $ticket->body }}</p>
+            </div> 
         </div>
     </div>
 @endsection
