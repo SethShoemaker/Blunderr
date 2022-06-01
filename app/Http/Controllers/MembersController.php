@@ -30,7 +30,7 @@ class MembersController extends Controller
             ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
             ->where('users.org_id', Auth::user()->org_id)
-            ->paginate(30);
+            ->simplePaginate(30);
 
         return view('dashboard.members.index')->with('members', $members);
     }

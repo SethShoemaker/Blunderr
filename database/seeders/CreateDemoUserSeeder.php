@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CreateSethsUserSeeder extends Seeder
+class CreateDemoUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,8 +21,8 @@ class CreateSethsUserSeeder extends Seeder
     public function run()
     {
         $owner = User::create([
-            'name' => 'Seth Shoemaker',
-            'email' => 'shoemakerseth2003@gmail.com',
+            'name' => 'Demo Owner',
+            'email' => 'owner@demo.net',
             'email_verified_at' => '2022-05-26 02:04:01',
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);
@@ -43,7 +43,7 @@ class CreateSethsUserSeeder extends Seeder
         $client = User::create([
             'name' => 'demo client',
             'org_id' => $organization->id,
-            'email' => 'connect@sethshoemaker.com',
+            'email' => 'client@demo.net',
             'email_verified_at' => '2022-05-26 02:04:01',
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);
@@ -54,7 +54,7 @@ class CreateSethsUserSeeder extends Seeder
             'name' => 'demo agent',
             'org_id' => $organization->id,
             'role_id' => $agent_role_id,
-            'email' => 'sethshoemakerdev@gmail.com',
+            'email' => 'agent@demo.net',
             'email_verified_at' => '2022-05-26 02:04:01',
             'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
         ]);

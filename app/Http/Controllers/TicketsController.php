@@ -46,7 +46,7 @@ class TicketsController extends Controller
             $ticketsQuery->where('assigned_agent_id', '=', Auth::id())->get();
         }
 
-        $tickets = $ticketsQuery->paginate(30);
+        $tickets = $ticketsQuery->simplePaginate(30);
 
         return view(
             'dashboard.tickets.index',

@@ -33,6 +33,17 @@ class Ticket extends Model
     }
 
     /**
+     * find tickets that are not completed.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIncomplete($query)
+    {
+        return $query->where('status_id', '!=', 4);
+    }
+
+    /**
      * find tickets of a certain project.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

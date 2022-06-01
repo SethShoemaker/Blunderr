@@ -298,7 +298,7 @@ form .form-group .checkbox label span {
   margin-bottom: 1rem;
 }
 .dashboard-viewport .dashboard-card .dashboard-body h2 {
-  font-size: calc(0.9rem + 1.7vw);
+  font-size: calc(0.9rem + 1.5vw);
 }
 .dashboard-viewport .dashboard-card .dashboard-body h3 {
   font-size: calc(0.65rem + 0.7vw);

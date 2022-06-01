@@ -9,6 +9,7 @@
         <div class="dashboard-card">
             <div class="dashboard-header">
                 <h1>{{ $project->name }}</h1>
+                <p>Registered: {{ date('m-d-Y', strtotime($project->created_at)) }}</p>
             </div>
             <div class="dashboard-body">
                 <div class="dashboard-button">
@@ -28,7 +29,6 @@
                         <a href="{{ route('dashboard.projects.edit', $project->id) }}" class='btn btn-primary'>Edit Project</a>
                     @endif
                 </div>
-                <p>Registered on {{ date('m-d-Y', strtotime($project->created_at)) }}</p>
                 <p>Description: {{ $project->description }}</p>
                 <h2>Clients</h2>
                 <table class='table table-bordered'>

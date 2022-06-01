@@ -138,9 +138,9 @@ class ProjectsController extends Controller
     {
         $project = Project::find($id);
 
-        $numOutstandingTickets = Ticket::ofProject($id)->count();
+        $numOutstandingTickets = Ticket::ofProject($id)->incomplete()->count();
 
-        if (Ticket::ofProject($id)->count() > 0) {
+        if ($numOutstandingTickets > 0) {
             return redirect()->back()->withErrors(['action' => 'Project has ' . $numOutstandingTickets . ' outstanding ticket(s)']);
         }
 
