@@ -8,5 +8,6 @@
     "/css/dashboard/dashboard.css": "/css/dashboard/dashboard.css",
     "/css/auth/auth.css": "/css/auth/auth.css",
     "/css/welcome.css": "/css/welcome.css",
+    "/css/dashboard/tickets/show.css": "/css/dashboard/tickets/show.css",
     "/css/dashboard/members/show.css": "/css/dashboard/members/show.css"
 }

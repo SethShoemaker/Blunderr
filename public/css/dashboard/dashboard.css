@@ -295,7 +295,7 @@ form .form-group .checkbox label span {
 }
 .dashboard-viewport .dashboard-card .dashboard-body {
   padding: 2rem;
-  margin-bottom: 10vh;
+  margin-bottom: 1rem;
 }
 .dashboard-viewport .dashboard-card .dashboard-body h2 {
   font-size: calc(0.9rem + 1.7vw);
@@ -351,6 +351,9 @@ form .form-group .checkbox label span {
 .dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row:hover {
   background-color: #dedede;
 }
-.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row .error {
+.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row .highlight {
   color: #bd020b;
+}
+.dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row .success {
+  color: rgb(0, 162, 0);
 }

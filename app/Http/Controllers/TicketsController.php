@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTicketRequest;
+use App\Models\TicketStatus;
 
 class TicketsController extends Controller
 {
@@ -30,10 +32,11 @@ class TicketsController extends Controller
                 'tickets.id',
                 'tickets.subject',
                 'tickets.body',
-                'users.name AS client',
+                'tickets.status_id',
+                'ticket_statuses.status',
                 'tickets.created_at',
             )
-            ->join('users', 'users.id', '=', 'tickets.client_id')
+            ->join('ticket_statuses', 'ticket_statuses.id', '=', 'tickets.status_id')
             ->join('projects', 'projects.id', '=', 'tickets.project_id')
             ->where('tickets.org_id', Auth::user()->org_id);
 
@@ -82,6 +85,7 @@ class TicketsController extends Controller
             'org_id' => $user->org_id,
             'project_id' => $user->project_id,
             'client_id' => $user->id,
+            'status_id' => 1,
             'subject' => $validated['subject'],
             'body' => $validated['body'],
         ]);
@@ -97,54 +101,94 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        $ticket = DB::table('tickets')
-            ->select([
-                'tickets.*',
-                'users.name AS client'
-            ])
-            ->join('users', 'users.id', '=', 'tickets.client_id')
-            ->where('tickets.id', $id)
-            ->first();
+        $ticket = Ticket::find($id);
+
+        $project = $ticket::getProject();
+
+        $status = TicketStatus::find($ticket->status_id);
+
+        $client = User::find($ticket->client_id);
+        $agent = User::find($ticket->assigned_agent_id);
+
+        $canSubmit = Auth::user()->role_id === 2;
+
+        $canAssign = Auth::user()->role_id > 2;
+
+        if ($canAssign) {
+            $agents = User::getAgents()->get();
+        }
 
         return view(
             'dashboard.tickets.show',
             [
                 'ticket' => $ticket,
+                'ticketStatus' => $status->status,
+                'ticketProjectName' => $project->name,
+                'ticketClientName' => $client->name,
+                'ticketAgentName' => $agent->name ?? 'UNASSIGNED',
+                'canSubmit' => $canSubmit,
+                'canAssign' => $canAssign,
+                'agents' => $agents ?? null,
             ]
         );
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Assign or remove agent 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function assign(Request $request, $id)
     {
-        //
+
+        $ticket = Ticket::find($id);
+
+        if ($request->agent) {
+            $ticket->status_id = 2;
+            $ticket->assigned_agent_id = $request->agent;
+        } else {
+            $ticket->status_id = 1;
+            $ticket->assigned_agent_id = NULL;
+        }
+
+        $ticket->save();
+
+        return redirect()->route('dashboard.tickets.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Change status to under review
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function submit(Request $request, $id)
     {
-        //
+        $ticket = Ticket::find($id);
+
+        $ticket->status_id = 3;
+        $ticket->save();
+
+        return redirect()->route('dashboard.tickets.index');
+    }
+
+    /**
+     * Approve the ticket
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(Request $request, $id)
+    {
+        $ticket = Ticket::find($id);
+
+        $ticket->status_id = 4;
+        $ticket->save();
+
+        return redirect()->route('dashboard.tickets.index');
     }
 }

@@ -40,7 +40,6 @@
                                 </select>
                             </div>
                             <div class="form-group" id='form-buttons'>
-                                <a href='{{ route('dashboard.members.index') }}'class="btn btn-secondary">Cancel</a>
                                 <button class="btn btn-primary">Save&nbsp;Changes</button>
                             </div>
                         </form>

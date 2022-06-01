@@ -216,7 +216,7 @@
     
         .dashboard-body{
             padding:2rem;
-            margin-bottom:10vh;
+            margin-bottom:1rem;
     
             h2{
                 font-size: calc(0.9rem + 1.7vw);
@@ -282,8 +282,11 @@
                         &:hover{
                             background-color: $mediumgrey;
                         }
-                        .error{
+                        .highlight{
                             color:$red;
+                        }
+                        .success{
+                            color:$green;
                         }
                     }
                 }

@@ -23,7 +23,7 @@
                             <th>Project</th>
                             <th>Subject</th>
                             <th>Body</th>
-                            <th>Client</th>
+                            <th>Status</th>
                             <th>Date Submitted</th>
                         </tr>
                     </thead>
@@ -32,8 +32,8 @@
                             <tr class='org-row' data-href='{{ route('dashboard.tickets.show', $ticket->id)}}'>
                                 <td>{{ $ticket->project }}</td>
                                 <td>{{ $ticket->subject }}</td>
-                                <td>{{ $ticket->body }}</td>
-                                <td>{{ $ticket->client }}</td>
+                                <td>{{ Str::limit($ticket->body, 20) }}</td>
+                                <td class='{{ $ticket->status_id === 1 || $ticket->status_id === 3 ? 'highlight' : ' ' }}{{ $ticket->status_id === 4 ? 'success' : ' ' }}'>{{ $ticket->status }}</td>
                                 <td>{{ date('m-d-Y', strtotime($ticket->created_at)) }}</td>
                             </tr>
                         @empty

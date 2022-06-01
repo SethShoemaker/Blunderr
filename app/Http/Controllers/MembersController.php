@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Models\User;
-use App\Models\userRole;
+use App\Models\UserRole;
 
 class MembersController extends Controller
 {
@@ -63,7 +63,7 @@ class MembersController extends Controller
         $canEdit = Auth::user()->role_id === 4;
 
         if ($canEdit) {
-            $roles = userRole::all();
+            $roles = UserRole::all();
             $projects = Project::all();
         }
 
@@ -90,6 +90,13 @@ class MembersController extends Controller
         $validated = $request->validated();
 
         $user = User::find($id);
+
+        // Make current user an agent
+        if ($validated['role'] == 4) {
+            $self = User::find(Auth::id());
+            $self->role_id = 2;
+            $self->save();
+        }
 
         $user->role_id = $validated['role'];
         $user->project_id = $validated['project'] ?? NULL;

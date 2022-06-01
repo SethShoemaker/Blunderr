@@ -39,4 +39,7 @@ mix
         // Projects
         .js('resources/js/dashboard/projects/show.js', 'public/js/dashboard/projects')
 
+        // Tickets
+        .sass('resources/sass/dashboard/tickets/show.scss', 'public/css/dashboard/tickets')
+
 ;

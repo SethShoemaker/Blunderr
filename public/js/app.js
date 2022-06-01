@@ -38545,6 +38545,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/dashboard/tickets/show.scss":
+/*!****************************************************!*\
+  !*** ./resources/sass/dashboard/tickets/show.scss ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -38932,6 +38945,7 @@ process.umask = function() { return 0; };
 /******/ 			"css/dashboard/dashboard": 0,
 /******/ 			"css/auth/auth": 0,
 /******/ 			"css/welcome": 0,
+/******/ 			"css/dashboard/tickets/show": 0,
 /******/ 			"css/dashboard/members/show": 0
 /******/ 		};
 /******/ 		
@@ -38982,13 +38996,14 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/welcome.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/auth/auth.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/dashboard.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/home.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/members/show.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/welcome.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/auth/auth.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/dashboard.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/members/show.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/dashboard/home","css/dashboard/dashboard","css/auth/auth","css/welcome","css/dashboard/tickets/show","css/dashboard/members/show"], () => (__webpack_require__("./resources/sass/dashboard/tickets/show.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

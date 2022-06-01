@@ -31,7 +31,7 @@
                             <tr class='org-row' data-href='{{ route('dashboard.projects.show', $project->id)}}'>
                                 <td>{{ $project->id }}</td>
                                 <td>{{ $project->name }}</td>
-                                <td>{{ $project->description }}</td>
+                                <td>{{ Str::limit($project->description, 20) }}</td>
                                 <td>{{ $project->created_at->format('m/d/y') }}</td>
                             </tr>
                         @empty

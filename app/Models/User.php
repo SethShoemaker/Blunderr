@@ -57,4 +57,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('project_id', $id)->where('role_id', 1);
     }
+
+    /**
+     * Scope a query to only include clients of a certain project.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGetAgents($query)
+    {
+        return $query->where('role_id', 2)->where('org_id', Auth::user()->org_id);
+    }
 }

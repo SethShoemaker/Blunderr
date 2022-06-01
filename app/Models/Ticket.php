@@ -16,6 +16,7 @@ class Ticket extends Model
         'project_id',
         'client_id',
         'assigned_agent_id',
+        'status_id',
         'subject',
         'body',
     ];
@@ -28,7 +29,18 @@ class Ticket extends Model
      */
     public function scopeOfProject($query, $id)
     {
-        return $query->where('project_id', $id);
+        return $query->where('tickets.project_id', $id);
+    }
+
+    /**
+     * find tickets of a certain project.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGetProject($query)
+    {
+        return $query->select('projects.name')->join('projects', 'projects.id', '=', 'tickets.project_id')->first();
     }
 
     /**
@@ -39,7 +51,7 @@ class Ticket extends Model
     protected static function booted()
     {
         static::addGlobalScope('userOrgTickets', function (Builder $builder) {
-            $builder->where('org_id', Auth::user()->org_id);
+            $builder->where('tickets.org_id', Auth::user()->org_id);
         });
     }
 }

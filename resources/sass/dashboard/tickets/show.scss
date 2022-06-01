@@ -2,19 +2,24 @@
 
 .dashboard-body{
     p{
-        padding:5px 0;
+        padding:2px 0;
     }
 
-    #edit-container{
-
         form {
+            display:flex;
+            align-items: center;
+            padding-bottom:10px;
+
             .form-group{
-                margin:0 0 16px 0;
+                margin:0 20px 0 0 ;
                 display:flex;
+                align-items: center;
+                width:fit-content;
 
                 label{
                     font-size:calc(0.45rem + 0.6vw);
                     margin-right:calc(0.5rem);
+                    padding-bottom: 0;
                 }
 
                 select{
@@ -24,9 +29,9 @@
                 }
             }
 
-            #form-buttons{
+            .form-buttons{
                 justify-content: flex-start;
-                margin-top:25px;
+                align-items: center;
 
                 a{
                     margin-right:1rem;
@@ -37,6 +42,5 @@
         #project-group{
             display:none;
         }
-    }
 }
 

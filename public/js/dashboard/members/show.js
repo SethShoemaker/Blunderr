@@ -22,6 +22,14 @@ $(function () {
       return false;
     }
 
+    if (roleField.val() == 4) {
+      if(!confirm('Are you sure you want to make this member the owner?')){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
     return true;
   });
 });

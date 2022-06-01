@@ -29,7 +29,7 @@
                     @endif
                 </div>
                 <p>Registered on {{ date('m-d-Y', strtotime($project->created_at)) }}</p>
-                <p>{{ $project->description }}</p>
+                <p>Description: {{ $project->description }}</p>
                 <h2>Clients</h2>
                 <table class='table table-bordered'>
                     <thead>

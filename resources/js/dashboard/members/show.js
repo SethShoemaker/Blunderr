@@ -19,6 +19,9 @@ $(function(){
             alert('must assign project to client');
             return false;
         }
+        if(roleField.val() == 4){
+            confirm('Are you sure you want to make this member the owner?');
+        }
         return true;
     });
 });

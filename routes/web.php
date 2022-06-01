@@ -62,6 +62,9 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
         Route::GET('/submit', 'create')->name('create')->middleware('client_check');
         Route::POST('/submit', 'store')->name('store')->middleware('client_check');
         Route::GET('/{id}', 'show')->name('show');
+        Route::PATCH('/{id}/assign', 'assign')->name('assign');
+        Route::PATCH('/{id}/submit', 'submit')->name('submit');
+        Route::PATCH('/{id}/approve', 'approve')->name('approve');
     });
 
     Route::prefix('projects')->name('projects.')->controller(ProjectsController::class)->group(function () {

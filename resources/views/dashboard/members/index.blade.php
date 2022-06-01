@@ -29,7 +29,7 @@
                                 <td>{{ $member->id }}</td>
                                 <td>{{ $member->name }}</td>
                                 <td>{{ $member->email }}</td>
-                                <td class='{{ $member->title ? '' : 'error' }}'>
+                                <td class='{{ $member->title ? '' : 'highlight' }}'>
                                     {{ $member->title ?? 'unassigned' }}
                                     @if ($member->title === 'client')
                                         ({{ $member->project }})
