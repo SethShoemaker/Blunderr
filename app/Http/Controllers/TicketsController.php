@@ -89,15 +89,15 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::find($id)->withStatusAndProject()->first();
+        $ticket = Ticket::withStatusAndProject()->where('tickets.id', $id)->first();
 
         $client = User::find($ticket->client_id);
         $agent = User::find($ticket->assigned_agent_id);
 
-        $comments = ticketComment::ofTicket($ticket->id)->withPosterName()->simplePaginate(1);
+        $comments = ticketComment::ofTicket($ticket->id)->withPosterName()->simplePaginate(5);
+        $hasComments = $comments->count() > 0;
 
         $canSubmit = Auth::user()->role_id === 2;
-
         $canAssign = Auth::user()->role_id > 2;
 
         if ($canAssign) {
@@ -111,6 +111,7 @@ class TicketsController extends Controller
                 'ticketClientName' => $client->name,
                 'ticketAgentName' => $agent->name ?? 'UNASSIGNED',
                 'comments' => $comments,
+                'hasComments' => $hasComments,
                 'canSubmit' => $canSubmit,
                 'canAssign' => $canAssign,
                 'agents' => $agents ?? null,
@@ -119,7 +120,7 @@ class TicketsController extends Controller
     }
 
     /**
-     * Assign or remove agent 
+     * Comment on a ticket
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -128,8 +129,11 @@ class TicketsController extends Controller
     public function comment(Request $request, $id)
     {
 
-        $ticket = Ticket::find($id);
-
+        ticketComment::create([
+            'ticket_id' => $id,
+            'poster_id' => Auth::id(),
+            'body' => $request->body,
+        ]);
 
         return redirect()->route('dashboard.tickets.show', $id);
     }

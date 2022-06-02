@@ -67,28 +67,32 @@
                 <p>Comments for ticket: {{ $ticket->subject }}</p>
             </div>
             <div class="dashboard-body">
-                <form action="{{ route('dashboard.tickets.comment', $ticket->id) }}" class="comment-form">
+                <form action="{{ route('dashboard.tickets.comment', $ticket->id) }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="comment" class="col-md-4 col-form-label text-md-right">Comment</label>
-                        <textarea name="comment" rows='1' id="comment" class='form-control'></textarea>
+                        <label for="body" class="col-md-4 col-form-label text-md-right">Comment</label>
+                        <textarea name="body" rows='1' id="body" class='form-control'></textarea>
                     </div>
-                    <div class='form-group' id="form-buttons">
+                    <div class='form-group' id="form-buttons" style='justify-content:flex-end;'>
                         <button class="btn btn-primary">Post</button>
                     </div>
                 </form>
-                <div class="comments-container">
-                    @foreach ($comments as $comment)
-                        <div class="comment">
-                            <div class="comment-header">
-                                <h3>{{ $comment->name }}</h3>
-                                <p>Posted on: {{ date('m-d-Y', strtotime($comment->created_at)) }}</p>
+                @if ($hasComments)
+                    <div class="comments-container">
+                        <h3>Comments</h3>
+                        @foreach ($comments as $comment)
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <h4>{{ $comment->name }}</h4>
+                                    <p>Posted on: {{ date('m-d-Y', strtotime($comment->created_at)) }}</p>
+                                </div>
+                                <div class="comment-body">
+                                    <p>{{ $comment->body }}</p>
+                                </div>
                             </div>
-                            <div class="comment-body">
-                                <p>{{ $comment->body }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>

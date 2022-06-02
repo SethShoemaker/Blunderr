@@ -272,7 +272,7 @@
                 th,
                 td{
                     border:1px solid $offblack;
-                    padding:0.3rem 1rem;
+                    padding:0.5rem 1rem;
                 }
 
     
@@ -296,13 +296,33 @@
 
             .comments-container{
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
+                text-align: left;
 
-                .comment-header{
-                    display: flex;
+                h3{
+                    font-size:calc(1.2rem + 1.2vw);
+                }
 
-                    h3{
-                        margin-right:calc(1rem + 1vw);
+                .comment{
+                    width:100%;
+                    margin-bottom:3rem;
+
+                    .comment-header{
+                        display: flex;
+    
+                        h4{
+                            margin: 0 calc(1rem + 1vw) 0 0;
+                        }
+                        p{
+                            margin:0;
+                        }
+                    }
+                    .comment-body{
+                        margin-top:0.2rem;
+    
+                        p{
+                            margin: 0;
+                        }
                     }
                 }
             }

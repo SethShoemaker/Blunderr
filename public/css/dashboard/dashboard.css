@@ -259,7 +259,7 @@
 .dashboard-viewport .dashboard-card .dashboard-body .table th,
 .dashboard-viewport .dashboard-card .dashboard-body .table td {
   border: 1px solid #191919;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
 }
 .dashboard-viewport .dashboard-card .dashboard-body .table tbody .org-row {
   cursor: pointer;
@@ -275,11 +275,28 @@
 }
 .dashboard-viewport .dashboard-card .dashboard-body .comments-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: left;
 }
-.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment-header {
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container h3 {
+  font-size: calc(1.2rem + 1.2vw);
+}
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment .comment-header {
   display: flex;
 }
-.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment-header h3 {
-  margin-right: calc(1rem + 1vw);
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment .comment-header h4 {
+  margin: 0 calc(1rem + 1vw) 0 0;
+}
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment .comment-header p {
+  margin: 0;
+}
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment .comment-body {
+  margin-top: 0.2rem;
+}
+.dashboard-viewport .dashboard-card .dashboard-body .comments-container .comment .comment-body p {
+  margin: 0;
 }

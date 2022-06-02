@@ -10,7 +10,7 @@
 
 label{
     padding-bottom:10px;
-    font-size:calc(0.4rem + 0.6vw);
+    font-size:calc(0.45rem + 0.6vw);
     width:100%;
 }
 
@@ -28,6 +28,8 @@ select:focus{
     font-size:calc(0.45rem + 0.6vw) !important;
     width:100%;
     margin-top:0.35rem;
+    font-family: inherit;
+    resize: vertical;
 
     &:focus{
         border-color:$red !important;
@@ -36,6 +38,15 @@ select:focus{
     &:disabled{
         background-color:$lightgrey !important;
     }
+}
+
+.invalid-feedback{
+    font-size:calc(0.4rem + 0.6vw);
+    color:$red;
+}
+
+.is-invalid{
+    color:$red;
 }
 
 .checkbox{

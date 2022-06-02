@@ -38,7 +38,7 @@
 
 label {
   padding-bottom: 10px;
-  font-size: calc(0.4rem + 0.6vw);
+  font-size: calc(0.45rem + 0.6vw);
   width: 100%;
 }
 
@@ -56,6 +56,8 @@ select:focus {
   font-size: calc(0.45rem + 0.6vw) !important;
   width: 100%;
   margin-top: 0.35rem;
+  font-family: inherit;
+  resize: vertical;
 }
 input:focus,
 input:focus:focus,
@@ -72,6 +74,15 @@ textarea:focus:disabled,
 select:disabled,
 select:focus:disabled {
   background-color: #f3f3f3 !important;
+}
+
+.invalid-feedback {
+  font-size: calc(0.4rem + 0.6vw);
+  color: #bd020b;
+}
+
+.is-invalid {
+  color: #bd020b;
 }
 
 .checkbox label {
