@@ -6,10 +6,9 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTicketRequest;
-use App\Models\TicketStatus;
+use App\Models\ticketComment;
 
 class TicketsController extends Controller
 {
@@ -26,20 +25,8 @@ class TicketsController extends Controller
         $userRole = Auth::user()->role_id;
         $isClient = $userRole === 1;
 
-        $ticketsQuery = DB::table('tickets')
-            ->select(
-                'projects.name AS project',
-                'tickets.id',
-                'tickets.subject',
-                'tickets.body',
-                'tickets.status_id',
-                'ticket_statuses.status',
-                'tickets.created_at',
-            )
-            ->join('ticket_statuses', 'ticket_statuses.id', '=', 'tickets.status_id')
-            ->join('projects', 'projects.id', '=', 'tickets.project_id')
-            ->where('tickets.org_id', Auth::user()->org_id);
-
+        // Implements global scope
+        $ticketsQuery = Ticket::withStatusAndProject();
 
         // If user is agent, only display assigned tickets
         if ($userRole === 2) {
@@ -64,12 +51,13 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        $project = Project::find(Auth::user()->project_id)->pluck('name')->first();
+        $project = Project::GetClientProject()->pluck('name')->first();
+
         return view('dashboard.tickets.create')->with(['project' => $project]);
     }
 
     /**
-     * submit new ticket
+     * store new ticket
      *
      * @param  \App\Http\Requests\StoreTicketRequest  $request
      * @return \Illuminate\Http\Response
@@ -94,21 +82,19 @@ class TicketsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified ticket.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $ticket = Ticket::find($id);
-
-        $project = $ticket::getProject();
-
-        $status = TicketStatus::find($ticket->status_id);
+        $ticket = Ticket::find($id)->withStatusAndProject()->first();
 
         $client = User::find($ticket->client_id);
         $agent = User::find($ticket->assigned_agent_id);
+
+        $comments = ticketComment::ofTicket($ticket->id)->withPosterName()->simplePaginate(1);
 
         $canSubmit = Auth::user()->role_id === 2;
 
@@ -122,15 +108,30 @@ class TicketsController extends Controller
             'dashboard.tickets.show',
             [
                 'ticket' => $ticket,
-                'ticketStatus' => $status->status,
-                'ticketProjectName' => $project->name,
                 'ticketClientName' => $client->name,
                 'ticketAgentName' => $agent->name ?? 'UNASSIGNED',
+                'comments' => $comments,
                 'canSubmit' => $canSubmit,
                 'canAssign' => $canAssign,
                 'agents' => $agents ?? null,
             ]
         );
+    }
+
+    /**
+     * Assign or remove agent 
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function comment(Request $request, $id)
+    {
+
+        $ticket = Ticket::find($id);
+
+
+        return redirect()->route('dashboard.tickets.show', $id);
     }
 
     /**

@@ -19,31 +19,6 @@
                     </div>
                 @endif
                 <p>{{ $body }}</p>
-                <div class="home-panels-container">
-                    @if($isClient)
-                        <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
-                            <strong>{{ $numTickets }}</strong>
-                            <br>
-                            <span>Tickets</span>
-                        </a>
-                    @else
-                        <a href='{{route('dashboard.members.index') }}' class="home-panel">
-                            <strong>{{ $numMembers }}</strong>
-                            <br>
-                            <span>Members</span>
-                        </a>
-                        <a href='{{route('dashboard.tickets.index') }}' class="home-panel">
-                            <strong>{{ $numTickets }}</strong>
-                            <br>
-                            <span>Tickets</span>
-                        </a>
-                        <a href='{{route('dashboard.projects.index') }}' class="home-panel">
-                            <strong>{{ $numProjects }}</strong>
-                            <br>
-                            <span>Projects</span>
-                        </a>
-                    @endif
-                </div>
             </div>
         </div>
     </div>

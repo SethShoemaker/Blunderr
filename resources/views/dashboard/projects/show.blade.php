@@ -14,7 +14,7 @@
             <div class="dashboard-body">
                 <div class="dashboard-button">
                     @if($canEdit)
-                        <button class='btn btn-secondary m-2 action-button'>Delete Project</button>
+                        <button class='btn btn-secondary action-button'>Delete Project</button>
                         <div id="delete-confirm" class='action-prompt'>
                             <div class="action-content">
                                 <h1>Confirm</h1>
@@ -30,31 +30,6 @@
                     @endif
                 </div>
                 <p>Description: {{ $project->description }}</p>
-                <h2>Clients</h2>
-                <table class='table table-bordered'>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($clients as $client)
-                            <tr class='org-row' data-href='{{ route('dashboard.members.show', $client->id)}}'>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $client->id }}</td>
-                                <td>{{ $client->name }}</td>
-                                <td>{{ $client->email }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4">There are no clients registered to this project</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

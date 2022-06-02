@@ -12,9 +12,9 @@
             <h1>Forgot Password</h1>
             @csrf
             <div class="form-group">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email">Email Address</label>
 
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback">
@@ -26,7 +26,7 @@
             <div class="form-group" id='form-buttons'>
                 <a href="{{ url('/login') }}" class='btn btn-secondary'>Back</a>
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Send Password Reset Link') }}
+                    Send Password Reset Link
                 </button>
             </div>
         </form>

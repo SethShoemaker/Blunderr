@@ -10,8 +10,8 @@
             @csrf
             @method('PATCH')
             <div class="form-group">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') ?? $organization->name }}" required autofocus>
+                <label for="name">Name</label>
+                <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') ?? $organization->name }}" required autofocus>
                 @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -20,8 +20,8 @@
             </div>
 
             <div class="form-group">
-                <label for="description" class="col-md-4 col-form-label text-md-right">Description (optional)</label>
-                    <textarea id="description" rows='11' maxLength='1500' class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description')  ?? $organization->description }}</textarea>
+                <label for="description">Description (optional)</label>
+                    <textarea id="description" rows='11' maxLength='1500' class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description')  ?? $organization->description }}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('description') }}</strong>

@@ -16,10 +16,9 @@
                 <p>Registered: {{ date('m-d-Y', strtotime($member->created_at)) }}</p>
                 @if ($canEdit)
                     <div id="edit-container">
-                        <form action="{{ route('dashboard.members.update', $member->id) }}" method='POST' id='edit-form'>
+                        <form action="{{ route('dashboard.members.update', $member->id) }}" method='POST' class='inline' id='edit-form'>
                             @csrf
                             @method('PATCH')
-                            <div class="form-group">
                                 <label for="role" class="col-form-label text-md-right">Role:</label>
                                 <select name="role" id="role" class="form-control form-select {{ $errors->has('role') ? ' is-invalid' : '' }}">
                                     <option value='' {{ $member->role ? '' : 'selected'}}>Unassigned</option>
@@ -27,8 +26,7 @@
                                         <option value="{{ $role->id }}" {{ $member->role === $role->title ? 'selected' : ''}}>{{ $role->title }}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="form-group" id='project-group'>
+                            <div id='project-group'>
                                 <label for="project" class="col-form-label text-md-right">Project:</label>
                                 <select name="project" id="project" class="form-control form-select {{ $errors->has('project') ? ' is-invalid' : '' }}">
                                     <option {{ $member->project ? '' : 'selected' }} disabled>Select</option>
@@ -39,7 +37,7 @@
                                     @endforelse
                                 </select>
                             </div>
-                            <div class="form-group" id='form-buttons'>
+                            <div id='form-buttons'>
                                 <button class="btn btn-primary">Save&nbsp;Changes</button>
                             </div>
                         </form>

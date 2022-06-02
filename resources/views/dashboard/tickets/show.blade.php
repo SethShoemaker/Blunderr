@@ -10,30 +10,28 @@
         <div class="dashboard-card">
             <div class="dashboard-header">
                 <h1>Ticket: {{ $ticket->subject }}</h1>
-                <p>Project: {{ $ticketProjectName }}</p>
+                <p>Project: {{ $ticket->project }}</p>
             </div>
             <div class="dashboard-body">
-                <p>Status: {{ $ticketStatus }}</p>
+                <p>Status: {{ $ticket->status }}</p>
                 @if ($canAssign)
-                    <form action="{{ route('dashboard.tickets.assign', $ticket->id)}}" method="POST">
+                    <form action="{{ route('dashboard.tickets.assign', $ticket->id)}}" method="POST" class='inline'>
                         @csrf
                         @method('PATCH')
-                        <div class="form-group">
-                            <label for="agent">Agent:</label>
-                            <select name="agent" id="agent">
-                                <option value=''{{ $ticket->assigned_agent_id ? '' : 'selected'}}>None</option>
-                                @forelse ($agents as $agent)
-                                    <option value='{{ $agent->id }}' {{ $ticket->assigned_agent_id === $agent->id ? 'selected' : ' '}}>{{ $agent->name }}</option>
-                                @empty
-                                    <option disabled>No Agents</option>
-                                @endforelse
-                            </select>
-                        </div>
+                        <label for="agent">Agent:</label>
+                        <select name="agent" id="agent">
+                            <option value=''{{ $ticket->assigned_agent_id ? '' : 'selected'}}>None</option>
+                            @forelse ($agents as $agent)
+                                <option value='{{ $agent->id }}' {{ $ticket->assigned_agent_id === $agent->id ? 'selected' : ' '}}>{{ $agent->name }}</option>
+                            @empty
+                                <option disabled>No Agents</option>
+                            @endforelse
+                        </select>
                         <div class="form-buttons">
                             <button type="submit" class='btn btn-secondary'>Save Changes</button>
                         </div>
                     </form>
-                    @if ($ticketStatus === 'under review')
+                    @if ($ticket->status === 'under review')
                         <form action="{{ route('dashboard.tickets.approve', $ticket->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
@@ -44,7 +42,7 @@
                     @endif
                 @elseif ($canSubmit)
                     <p>Agent: {{ $ticketAgentName }}</p>
-                    @if ($ticketStatus !== 'under review')
+                    @if ($ticket->status !== 'under review')
                         <form action="{{ route('dashboard.tickets.submit', $ticket->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
@@ -62,6 +60,36 @@
                 <p>Client: {{ $ticketClientName }}</p>
                 <p>Submitted: {{ date('m-d-Y', strtotime($ticket->created_at)) }}</p>
             </div> 
+        </div>
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <h2>Comments</h2>
+                <p>Comments for ticket: {{ $ticket->subject }}</p>
+            </div>
+            <div class="dashboard-body">
+                <form action="{{ route('dashboard.tickets.comment', $ticket->id) }}" class="comment-form">
+                    <div class="form-group">
+                        <label for="comment" class="col-md-4 col-form-label text-md-right">Comment</label>
+                        <textarea name="comment" rows='1' id="comment" class='form-control'></textarea>
+                    </div>
+                    <div class='form-group' id="form-buttons">
+                        <button class="btn btn-primary">Post</button>
+                    </div>
+                </form>
+                <div class="comments-container">
+                    @foreach ($comments as $comment)
+                        <div class="comment">
+                            <div class="comment-header">
+                                <h3>{{ $comment->name }}</h3>
+                                <p>Posted on: {{ date('m-d-Y', strtotime($comment->created_at)) }}</p>
+                            </div>
+                            <div class="comment-body">
+                                <p>{{ $comment->body }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 @endsection

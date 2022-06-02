@@ -1,9 +1,5 @@
 @import '../inc/_variables';
 
-@import '../inc/_button';
-
-@import '../inc/_form';
-
 #error-screen-overlay{
     position: fixed;
     height:100vh;
@@ -165,27 +161,14 @@
 
 .dashboard-viewport{
     margin-left: calc(10rem + 2vw);
-    height:100vh;
     width:calc(100vw - (10rem + 2vw));
-    overflow-y: scroll;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
     @media (max-width:600px){
         margin:50px 0 0 0;
         width:100vw;
-    }
-
-    &::-webkit-scrollbar {
-        width: 12px;
-    }
-    
-    &::-webkit-scrollbar-track {
-        background-color: $lightgrey; 
-    }
-    
-    &::-webkit-scrollbar-thumb,
-    &::-webkit-scrollbar-thumb:hover {
-        width:10px;
-        background-color: $darkgrey;
     }
 
     .dashboard-card{
@@ -194,22 +177,27 @@
             margin:1rem;
         }
         border:2px solid $offblack;
-        border-radius: calc(0.5rem + 1vw);
+        border-radius: calc(0.2rem + 0.5vw);
         overflow: scroll;
         background-color: #fff;
+        width:100%;
 
         .dashboard-header{
-            padding:1rem 2rem;
+            padding:1rem 2rem 0.5rem 2rem;
             background-color: $offblack;
             color:#fff;
-
     
-            h1{
-                font-size: calc(1.1rem + 2.6vw);
+            h1,
+            h2{
+                font-size: calc(1rem + 1.5vw);
+                margin:0;
+                font-weight: 600;
             }
 
             p{
                 font-size:calc(0.5rem + 0.6vw);
+                margin-top:0.5rem;
+                font-weight: 400;
             }
                     
         }
@@ -268,11 +256,25 @@
                 justify-content: flex-end;
                 align-items: center;
                 margin-bottom:2vh;
+
+                a{
+                    margin-left:2rem;
+                }
             }
     
             .table{
                 border-color:$offblack;
                 font-size:calc(0.45rem + 0.6vw);
+                width:100%;
+                border-collapse: collapse;
+
+                &,
+                th,
+                td{
+                    border:1px solid $offblack;
+                    padding:0.3rem 1rem;
+                }
+
     
                 tbody{
     
@@ -288,6 +290,19 @@
                         .success{
                             color:$green;
                         }
+                    }
+                }
+            }
+
+            .comments-container{
+                display: flex;
+                flex-direction: row;
+
+                .comment-header{
+                    display: flex;
+
+                    h3{
+                        margin-right:calc(1rem + 1vw);
                     }
                 }
             }

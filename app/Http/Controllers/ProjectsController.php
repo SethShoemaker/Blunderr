@@ -27,7 +27,7 @@ class ProjectsController extends Controller
         $orgName = Organization::pluck('name')->first();
 
         // Must be at least manager
-        $canCreate = (Auth::user()->role_id >= 3) ? true : false;
+        $canCreate = Auth::user()->role_id >= 3;
 
         return view(
             'dashboard.projects.index',
@@ -84,14 +84,11 @@ class ProjectsController extends Controller
         // Must be at least manager
         $canEdit = Auth::user()->role_id > 2;
 
-        $clients = User::clientOf($project->id)->get();
-
         return view(
             'dashboard.projects.show',
             [
                 'project' => $project,
                 'canEdit' => $canEdit,
-                'clients' => $clients,
             ]
         );
     }

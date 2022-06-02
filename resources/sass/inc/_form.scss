@@ -1,51 +1,60 @@
 @import './variables';
 
-form{
-    position: relative;
 
-    .form-group{
-        margin: 0 auto 20px auto;
-        width:95%;
-        margin-bottom:1rem;
+.form-group{
+    margin: 0 auto 20px auto;
+    width:95%;
+    margin-bottom:1rem;
 
-        label{
-            padding-bottom:5px;
-            font-size:calc(0.4rem + 0.6vw);
+}
+
+label{
+    padding-bottom:10px;
+    font-size:calc(0.4rem + 0.6vw);
+    width:100%;
+}
+
+input,
+input:focus,
+textarea,
+textarea:focus,
+select,
+select:focus{
+    border:1.5px solid $offblack !important;
+    border-radius:0 !important;
+    outline:none !important;
+    box-shadow: none !important;
+    padding:7px 11px !important;
+    font-size:calc(0.45rem + 0.6vw) !important;
+    width:100%;
+    margin-top:0.35rem;
+
+    &:focus{
+        border-color:$red !important;
+    }
+
+    &:disabled{
+        background-color:$lightgrey !important;
+    }
+}
+
+.checkbox{
+
+    label{
+        display: flex;
+        align-items: center;
+
+        input{
+            display: flex;
+            width:fit-content;
+
+            &:after{
+                background-color: $red;
+            }
         }
 
-        input,
-        input:focus,
-        textarea,
-        textarea:focus,
-        select,
-        select:focus{
-            border:1.5px solid $offblack;
-            border-radius:0;
-            outline:none !important;
-            box-shadow: none !important;
-            padding:5px 10px;
-            font-size:calc(0.4rem + 0.6vw);
-
-            &:focus{
-                border-color:$red;
-            }
-
-            &:disabled{
-                background-color:$lightgrey;
-            }
-        }
-
-        .checkbox{
-
-            label{
-                
-                display: flex;
-                align-items: center;
-
-                span{
-                    padding-left:0.3rem;
-                }
-            }
+        span{
+            padding-left:0.5rem;
         }
     }
 }
@@ -63,6 +72,36 @@ form{
             position: absolute;
             bottom:-30px;
             right:0;
+        }
+    }
+}
+
+form.inline {
+    display:flex;
+    align-items: center;
+    padding-bottom:10px;
+
+    label{
+        font-size:calc(0.45rem + 0.6vw);
+        margin-right:calc(0.5rem);
+        padding-bottom: 0;
+        width: fit-content;
+    }
+
+    select,
+    input{
+        display: inline-block;
+        width: fit-content;
+        margin-right:20px;
+    }
+
+    #form-buttons{
+        margin-top: 0 !important;
+        justify-content: flex-start;
+        align-items: center;
+
+        a{
+            margin-right:1rem;
         }
     }
 }

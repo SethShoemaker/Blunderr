@@ -7,12 +7,10 @@
     <div id="auth-container">
         <form method="POST" action="{{ route('organization.join') }}">
             <h1>Join Organization</h1>
-            <h2>Step 3 of 3</h2>
             @csrf
-            
             <div class="form-group">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Organization Name</label>
-                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                <label for="name">Organization Name</label>
+                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                     @if ($errors->has('name'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -21,8 +19,8 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Organization Password</label>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
+                <label for="password">Organization Password</label>
+                <input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>

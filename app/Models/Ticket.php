@@ -33,14 +33,37 @@ class Ticket extends Model
     }
 
     /**
-     * find tickets that are not completed.
+     * find tickets of a certain project.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeIncomplete($query)
+    public function scopeGetStatus($query)
     {
-        return $query->where('status_id', '!=', 4);
+        return $query
+            ->select(
+                'tickets.*',
+                'ticket_statuses.status AS status',
+            )
+            ->join('ticket_statuses', 'ticket_statuses.id', '=', 'tickets.status_id');
+    }
+
+    /**
+     * find tickets of a certain project.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithStatusAndProject($query)
+    {
+        return $query
+            ->select(
+                'projects.name AS project',
+                'tickets.*',
+                'ticket_statuses.status AS status',
+            )
+            ->join('ticket_statuses', 'ticket_statuses.id', '=', 'tickets.status_id')
+            ->join('projects', 'projects.id', '=', 'tickets.project_id');
     }
 
     /**
@@ -51,7 +74,24 @@ class Ticket extends Model
      */
     public function scopeGetProject($query)
     {
-        return $query->select('projects.name')->join('projects', 'projects.id', '=', 'tickets.project_id')->first();
+        return $query
+            ->select(
+                'tickets.*',
+                'projects.name AS project'
+            )
+            ->join('projects', 'projects.id', '=', 'tickets.project_id')
+            ->first();
+    }
+
+    /**
+     * find tickets that are not completed.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIncomplete($query)
+    {
+        return $query->where('status_id', '!=', 4);
     }
 
     /**

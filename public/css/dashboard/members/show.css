@@ -1,1 +1,115 @@
-.dashboard-body p{padding:5px 0}.dashboard-body #edit-container form .form-group{display:flex;margin:0 0 16px}.dashboard-body #edit-container form .form-group label{font-size:calc(.45rem + .6vw);margin-right:.5rem}.dashboard-body #edit-container form .form-group select{display:inline-block;min-width:100px;width:calc(6rem + 4vw)}.dashboard-body #edit-container form #form-buttons{justify-content:flex-start;margin-top:25px}.dashboard-body #edit-container form #form-buttons a{margin-right:1rem}.dashboard-body #edit-container #project-group{display:none}
+.form-group {
+  margin: 0 auto 20px auto;
+  width: 95%;
+  margin-bottom: 1rem;
+}
+
+label {
+  padding-bottom: 5px;
+  font-size: calc(0.4rem + 0.6vw);
+}
+
+input,
+input:focus,
+textarea,
+textarea:focus,
+select,
+select:focus {
+  border: 1.5px solid #191919 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 5px 10px !important;
+  font-size: calc(0.4rem + 0.6vw) !important;
+}
+input:focus,
+input:focus:focus,
+textarea:focus,
+textarea:focus:focus,
+select:focus,
+select:focus:focus {
+  border-color: #bd020b !important;
+}
+input:disabled,
+input:focus:disabled,
+textarea:disabled,
+textarea:focus:disabled,
+select:disabled,
+select:focus:disabled {
+  background-color: #f3f3f3 !important;
+}
+
+.checkbox label {
+  display: flex;
+  align-items: center;
+}
+.checkbox label span {
+  padding-left: 0.3rem;
+}
+
+#form-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+#form-buttons #buttons-right {
+  width: 80%;
+}
+@media (max-width: 300px) {
+  #form-buttons .btn-link {
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+  }
+}
+
+form.inline {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+form.inline label {
+  font-size: calc(0.45rem + 0.6vw);
+  margin-right: 0.5rem;
+  padding-bottom: 0;
+}
+form.inline select {
+  display: inline-block;
+  min-width: 100px;
+  width: calc(6rem + 4vw);
+  margin-right: 20px;
+}
+form.inline .form-buttons {
+  justify-content: flex-start;
+  align-items: center;
+}
+form.inline .form-buttons a {
+  margin-right: 1rem;
+}
+
+.dashboard-body p {
+  padding: 5px 0;
+}
+.dashboard-body #edit-container form .form-group {
+  margin: 0 0 16px 0;
+  display: flex;
+}
+.dashboard-body #edit-container form .form-group label {
+  font-size: calc(0.45rem + 0.6vw);
+  margin-right: 0.5rem;
+}
+.dashboard-body #edit-container form .form-group select {
+  display: inline-block;
+  min-width: 100px;
+  width: calc(6rem + 4vw);
+}
+.dashboard-body #edit-container form #form-buttons {
+  justify-content: flex-start;
+  margin-top: 25px;
+}
+.dashboard-body #edit-container form #form-buttons a {
+  margin-right: 1rem;
+}
+.dashboard-body #edit-container #project-group {
+  display: none;
+}

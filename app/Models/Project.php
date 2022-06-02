@@ -18,6 +18,17 @@ class Project extends Model
     ];
 
     /**
+     * find the project that belongs to the client
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGetClientProject($query)
+    {
+        return $query->find(Auth::user()->project_id);
+    }
+
+    /**
      * The "booted" method of the model.
      *
      * @return void

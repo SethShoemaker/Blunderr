@@ -7,7 +7,7 @@
 @section('content')
 <div id="auth-container">
     <form method="POST" action="{{ route('dashboard.tickets.store') }}">
-        <h1>Register Project</h1>
+        <h1>Submit Ticket</h1>
         @csrf
 
         <div class="form-group">

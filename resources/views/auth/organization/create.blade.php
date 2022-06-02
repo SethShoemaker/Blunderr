@@ -14,8 +14,8 @@
             <h1>Register Organization</h1>
             @csrf
             <div class="form-group">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                <label for="name">Name</label>
+                <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                 @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -25,12 +25,12 @@
 
             <div class="form-group">
                 <label for="owner">Owner</label>
-                <input id="owner" type="text" class='form-control' name="owner" value='{{ Auth::user()->name}}' required disabled>
+                <input id="owner" type="text" name="owner" value='{{ Auth::user()->name}}' required disabled>
             </div>
 
             <div class="form-group">
-                <label for="description" class="col-md-4 col-form-label text-md-right">Description (optional)</label>
-                    <textarea id="description" rows='11' maxLength='1500' class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description') }}</textarea>
+                <label for="description">Description (optional)</label>
+                    <textarea id="description" rows='11' maxLength='1500' class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required>{{ old('description') }}</textarea>
                     @if ($errors->has('description'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -39,8 +39,8 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Organization Password</label>
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <label for="password">Organization Password</label>
+                <input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -49,8 +49,8 @@
             </div>
 
             <div class="form-group">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-                <input id="password-confirm" type="password" class="form-control{{ $errors->has('password-confirm') ? ' is-invalid' : '' }}" name="password-confirm" required>
+                <label for="password-confirm">Confirm Password</label>
+                <input id="password-confirm" type="password" class="{{ $errors->has('password-confirm') ? ' is-invalid' : '' }}" name="password-confirm" required>
                 @if ($errors->has('password-confirm'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password-confirm') }}</strong>

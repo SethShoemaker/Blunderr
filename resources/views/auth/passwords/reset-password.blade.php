@@ -10,9 +10,9 @@
             @csrf
             <input type="hidden" name='token' value='{{ $request->route('token') }}'>
             <div class="form-group">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email">Email Address</label>
 
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $request->email }}" required autofocus>
+                <input id="email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $request->email }}" required autofocus>
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback">
@@ -22,9 +22,9 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password">Password</label>
 
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                <input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                 @if ($errors->has('password'))
                     <span class="invalid-feedback">
@@ -34,9 +34,9 @@
             </div>
 
             <div class="form-group">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                <label for="password-confirm">Confirm Password</label>
 
-                <input id="password-confirm" type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
+                <input id="password-confirm" type="password" class="{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
                 
                 @if ($errors->has('password_confirmation'))
                     <span class="invalid-feedback">
@@ -47,7 +47,7 @@
 
             <div class="form-group" id='form-buttons' style='justify-content:flex-end'>
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Reset Password') }}
+                    Reset Password
                 </button>
             </div>
         </form>

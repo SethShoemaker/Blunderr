@@ -2,12 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/js/dashboard/dashboard.js": "/js/dashboard/dashboard.js",
     "/js/dashboard/members/show.js": "/js/dashboard/members/show.js",
-    "/js/dashboard/projects/show.js": "/js/dashboard/projects/show.js",
     "/css/app.css": "/css/app.css",
-    "/css/dashboard/home.css": "/css/dashboard/home.css",
     "/css/dashboard/dashboard.css": "/css/dashboard/dashboard.css",
     "/css/auth/auth.css": "/css/auth/auth.css",
-    "/css/welcome.css": "/css/welcome.css",
-    "/css/dashboard/tickets/show.css": "/css/dashboard/tickets/show.css",
-    "/css/dashboard/members/show.css": "/css/dashboard/members/show.css"
+    "/css/welcome.css": "/css/welcome.css"
 }

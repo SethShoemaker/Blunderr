@@ -6,7 +6,6 @@
 @section('content')
     <div id='auth-container'>
         <h1>Verify Email</h1>
-        <h2>Step 2 of 3</h2>
         <p>
             Click the link sent to {{ Auth::user()->email }}
         </p>

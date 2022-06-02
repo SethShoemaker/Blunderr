@@ -7,7 +7,6 @@
     <div id="auth-container">
         <form method="POST" action="{{ route('register') }}">
             <h1>Register</h1>
-            <h2>Step 1 of 3</h2>
             @csrf
             <div class="form-group">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
