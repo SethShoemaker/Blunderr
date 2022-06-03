@@ -104,6 +104,8 @@ class TicketsController extends Controller
             $agents = User::getAgents()->get();
         }
 
+        $isComplete = $ticket->status_id === 4;
+
         return view(
             'dashboard.tickets.show',
             [
@@ -115,6 +117,7 @@ class TicketsController extends Controller
                 'canSubmit' => $canSubmit,
                 'canAssign' => $canAssign,
                 'agents' => $agents ?? null,
+                'isComplete' => $isComplete,
             ]
         );
     }

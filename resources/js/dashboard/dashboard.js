@@ -44,4 +44,16 @@ $(function(){
     $(".action-cancel").click(function(){
         hideActionPrompt();
     });
+    
+    $("#search").on('keyup', function(){
+        var value = $(this).val().toLowerCase();
+        var rows = $("tbody tr");
+        rows.each(function(i){
+            console.log(rows[i]);
+        });
+        // $("table").filter(function() {
+        //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        // });
+
+    })
 })

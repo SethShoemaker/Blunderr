@@ -12,53 +12,72 @@
                 <h1>Ticket: {{ $ticket->subject }}</h1>
                 <p>Project: {{ $ticket->project }}</p>
             </div>
-            <div class="dashboard-body">
-                <p>Status: {{ $ticket->status }}</p>
-                @if ($canAssign)
-                    <form action="{{ route('dashboard.tickets.assign', $ticket->id)}}" method="POST" class='inline'>
-                        @csrf
-                        @method('PATCH')
-                        <label for="agent">Agent:</label>
-                        <select name="agent" id="agent">
-                            <option value=''{{ $ticket->assigned_agent_id ? '' : 'selected'}}>None</option>
-                            @forelse ($agents as $agent)
-                                <option value='{{ $agent->id }}' {{ $ticket->assigned_agent_id === $agent->id ? 'selected' : ' '}}>{{ $agent->name }}</option>
-                            @empty
-                                <option disabled>No Agents</option>
-                            @endforelse
-                        </select>
-                        <div class="form-buttons">
-                            <button type="submit" class='btn btn-secondary'>Save Changes</button>
-                        </div>
-                    </form>
-                    @if ($ticket->status === 'under review')
-                        <form action="{{ route('dashboard.tickets.approve', $ticket->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <div class="form-buttons">
-                                <button type="submit" class='btn btn-primary'>Approve Ticket</button>
-                            </div>
-                        </form>
-                    @endif
-                @elseif ($canSubmit)
-                    <p>Agent: {{ $ticketAgentName }}</p>
-                    @if ($ticket->status !== 'under review')
-                        <form action="{{ route('dashboard.tickets.submit', $ticket->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <div class="form-buttons mb-2">
-                                <button type="submit" class='btn btn-primary'>Submit Ticket</button>
-                            </div>
-                        </form>
-                    @else
-                        <p><strong>Ticket is under review</strong></p>
-                    @endif
-                @else
-                    <p>Agent: {{ $ticketAgentName }}</p>
-                @endif
-                <p>Body: {{ $ticket->body }}</p>
-                <p>Client: {{ $ticketClientName }}</p>
-                <p>Submitted: {{ date('m-d-Y', strtotime($ticket->created_at)) }}</p>
+            <div class="dashboard-body body-split">
+                <div class="split-left">
+                    <div class="body-content">
+                        <ul>
+                            <li>Status:<span>{{ $ticket->status }}</span></li>
+                            <li>Client:<span>{{ $ticketClientName }}</span></li> 
+                            <li>Submitted:<span>{{ date('m-d-Y', strtotime($ticket->created_at)) }}</span></li>
+                            @if ($canAssign && !$isComplete)
+                                <form action="{{ route('dashboard.tickets.assign', $ticket->id)}}" method="POST" class='split'>
+                                    @csrf
+                                    @method('PATCH')
+                                    <li>
+                                        <label for="agent">Agent:</label>
+                                        <span>
+                                            <select name="agent" id="agent">
+                                                <option value=''{{ $ticket->assigned_agent_id ? '' : 'selected'}}>None</option>
+                                                @forelse ($agents as $agent)
+                                                    <option value='{{ $agent->id }}' {{ $ticket->assigned_agent_id === $agent->id ? 'selected' : ' '}}>{{ $agent->name }}</option>
+                                                @empty
+                                                    <option disabled>No Agents</option>
+                                                @endforelse
+                                            </select>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class='form-button'>
+                                            <button type="submit" class='btn btn-secondary'>Save Changes</button>
+                                        </span>
+                                    </li>
+                                </form>
+                                @if ($ticket->status === 'under review')
+                                    <form action="{{ route('dashboard.tickets.approve', $ticket->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <li>
+                                            <span class="form-button">
+                                                <button type="submit" class='btn btn-primary'>Approve Ticket</button>
+                                            </span>
+                                        </li>
+                                        
+                                    </form>
+                                @endif
+                            @elseif ($canSubmit)
+                                <li>Agent:<span>{{ $ticketAgentName }}</span></li>
+                                @if ($ticket->status !== 'under review')
+                                    <form action="{{ route('dashboard.tickets.submit', $ticket->id) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="form-buttons mb-2">
+                                            <button type="submit" class='btn btn-primary'>Submit Ticket</button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <li>Ticket is under review</li>
+                                @endif
+                            @else
+                                <li>Agent:<span>{{ $ticketAgentName }}</span></li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+                <div class="split-right">
+                    <div class="body-content">
+                        <p>Body: {{ $ticket->body }}</p>
+                    </div>
+                </div>
             </div> 
         </div>
         <div class="dashboard-card">
@@ -66,31 +85,37 @@
                 <h2>Comments</h2>
                 <p>Comments for ticket: {{ $ticket->subject }}</p>
             </div>
-            <div class="dashboard-body">
-                <form action="{{ route('dashboard.tickets.comment', $ticket->id) }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="body" class="col-md-4 col-form-label text-md-right">Comment</label>
-                        <textarea name="body" rows='1' id="body" class='form-control'></textarea>
-                    </div>
-                    <div class='form-group' id="form-buttons" style='justify-content:flex-end;'>
-                        <button class="btn btn-primary">Post</button>
-                    </div>
-                </form>
-                @if ($hasComments)
-                    <div class="comments-container">
-                        <h3>Comments</h3>
-                        @foreach ($comments as $comment)
-                            <div class="comment">
-                                <div class="comment-header">
-                                    <h4>{{ $comment->name }}</h4>
-                                    <p>Posted on: {{ date('m-d-Y', strtotime($comment->created_at)) }}</p>
-                                </div>
-                                <div class="comment-body">
-                                    <p>{{ $comment->body }}</p>
-                                </div>
+            <div class="dashboard-body body-comments">
+                @if (!$isComplete)
+                    <div class="comment-submit">
+                        <form action="{{ route('dashboard.tickets.comment', $ticket->id) }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="body">Comment</label>
+                                <textarea name="body" rows='1' id="body"></textarea>
                             </div>
-                        @endforeach
+                            <div class='form-group' id="form-buttons" style='justify-content:flex-end;'>
+                                <button class="btn btn-primary">Post</button>
+                            </div>
+                        </form>
+                    </div>
+                @endif
+                @if ($hasComments)
+                    <div class="comments-list-container">
+                        <h3>Comments</h3>
+                        <ul>
+                            @foreach ($comments as $comment)
+                                <li>
+                                    <div class="comment-header">
+                                        <h4>{{ $comment->name }}</h4>
+                                        <p>Posted on: {{ date('m-d-Y', strtotime($comment->created_at)) }}</p>
+                                    </div>
+                                    <div class="comment-body">
+                                        <p>{{ $comment->body }}</p>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
             </div>

@@ -17,7 +17,10 @@
                             <a href="{{ route('dashboard.tickets.create') }}" class='btn btn-primary'>Submit Ticket</a>    
                         </div>
                     @endif
-                <table class='table table-bordered'>
+                {{-- <div class="table-search">
+                    <input type="text" id="search">
+                </div> --}}
+                <table>
                     <thead>
                         <tr>
                             <th>Project</th>

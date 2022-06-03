@@ -3,7 +3,7 @@
   border-radius: 0;
   border: none;
   color: #fff;
-  padding: 7px 13px;
+  padding: 9px 15px;
   font-size: calc(0.45rem + 0.6vw);
   text-decoration: none;
   font-weight: 400;
@@ -118,36 +118,6 @@ select:focus:disabled {
   }
 }
 
-form.inline {
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
-}
-form.inline label {
-  font-size: calc(0.45rem + 0.6vw);
-  margin-right: 0.5rem;
-  padding-bottom: 0;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-form.inline select,
-form.inline input {
-  display: inline-block;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 20px;
-}
-form.inline #form-buttons {
-  margin-top: 0 !important;
-  justify-content: flex-start;
-  align-items: center;
-}
-form.inline #form-buttons a {
-  margin-right: 1rem;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -160,14 +130,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Noto Sans", sans-serif;
-  background-color: #f3f3f3;
   overflow-x: hidden;
 }
 body::-webkit-scrollbar {
   width: 12px !important;
 }
 body::-webkit-scrollbar-track {
-  background-color: #f3f3f3 !important;
+  background-color: #e4e4e4 !important;
 }
 body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:hover {
   width: 10px !important;

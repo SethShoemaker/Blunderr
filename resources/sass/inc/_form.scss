@@ -86,33 +86,3 @@ select:focus{
         }
     }
 }
-
-form.inline {
-    display:flex;
-    align-items: center;
-    padding-bottom:10px;
-
-    label{
-        font-size:calc(0.45rem + 0.6vw);
-        margin-right:calc(0.5rem);
-        padding-bottom: 0;
-        width: fit-content;
-    }
-
-    select,
-    input{
-        display: inline-block;
-        width: fit-content;
-        margin-right:20px;
-    }
-
-    #form-buttons{
-        margin-top: 0 !important;
-        justify-content: flex-start;
-        align-items: center;
-
-        a{
-            margin-right:1rem;
-        }
-    }
-}
