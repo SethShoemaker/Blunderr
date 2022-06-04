@@ -117,6 +117,26 @@ select:focus:disabled {
   }
 }
 
+form.inline .form-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 0;
+}
+form.inline .form-group label {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 0.5rem 0 0;
+}
+form.inline .form-group input,
+form.inline .form-group textarea,
+form.inline .form-group select {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 body {
   background-color: #191919;
 }

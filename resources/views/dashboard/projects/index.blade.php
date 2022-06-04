@@ -11,7 +11,7 @@
                 <h1>Projects</h1>
                 <p>List of all projects</p>
             </div>
-            <div class="dashboard-body">
+            <div class="dashboard-body body-table">
                 <div class="dashboard-button">
                     @if ($canCreate)
                         <a href="{{ route('dashboard.projects.create') }}" class='btn btn-primary'>Register New Project</a>    

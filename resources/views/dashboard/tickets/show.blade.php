@@ -2,7 +2,6 @@
 @section('title', 'Dashboard')
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard/tickets/show.css') }}">
 @endsection
 @section('content')
     @include('dashboard.inc.nav')

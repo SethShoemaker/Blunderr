@@ -11,7 +11,7 @@
                 <h1>Members</h1>
                 <p>List of all organization members</p>
             </div>
-            <div class="dashboard-body">
+            <div class="dashboard-body body-table">
                 <table class='table table-bordered'>
                     <thead>
                         <tr>

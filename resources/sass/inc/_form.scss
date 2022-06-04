@@ -86,3 +86,23 @@ select:focus{
         }
     }
 }
+
+form.inline{
+    .form-group{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-left:0;
+        
+        label{
+            width:fit-content;
+            padding:0 0.5rem 0 0;
+        }
+
+        input,
+        textarea,
+        select{
+            width:fit-content;
+        }
+    }
+}

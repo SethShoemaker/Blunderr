@@ -213,8 +213,8 @@ body{
             }
     
             h3{
-                font-size: calc(0.65rem + 0.7vw);
-                margin:0 0 2rem 0;
+                font-size: calc(0.6rem + 1.1vw);
+                margin:0 0 1rem 0;
             }
     
             p{
@@ -222,7 +222,7 @@ body{
             }
 
             .body-content{
-                padding:1rem 2rem;
+                padding:1rem 2rem; 
             }
 
             &.body-split{
@@ -294,6 +294,10 @@ body{
                 .comments-list-container{
                     padding:calc(1rem + 1vw);
 
+                    h3{
+                        font-size: calc(0.6rem + 1.1vw);
+                    }
+
                     ul{
                         display: flex;
                         flex-direction: column;
@@ -304,7 +308,7 @@ body{
 
                         li{
                             margin-bottom:2rem;
-                            padding:2rem;
+                            padding:1.2rem 2rem;
                             width:100%;
                             background-color: #fff;
 
@@ -331,33 +335,43 @@ body{
                         }
                     }
                 }
+            }
 
-                h3{
-                    font-size:calc(1.2rem + 1.2vw);
+            &.body-table{
+
+                padding:2rem;
+
+                table{
+                    border-color:$offblack;
+                    font-size:calc(0.45rem + 0.6vw);
+                    width:100%;
+                    border-collapse: collapse;
+    
+                    &,
+                    th,
+                    td{
+                        border:1px solid $offblack;
+                        padding:0.5rem 1rem;
+                    }
+    
+        
+                    tbody{
+        
+                        .org-row{
+                            cursor: pointer;
+        
+                            &:hover{
+                                background-color: $mediumgrey;
+                            }
+                            .highlight{
+                                color:$red;
+                            }
+                            .success{
+                                color:$green;
+                            }
+                        }
+                    }
                 }
-
-                // .comment{
-                //     width:100%;
-                //     margin-bottom:3rem;
-
-                //     .comment-header{
-                //         display: flex;
-    
-                //         h4{
-                //             margin: 0 calc(1rem + 1vw) 0 0;
-                //         }
-                //         p{
-                //             margin:0;
-                //         }
-                //     }
-                //     .comment-body{
-                //         margin-top:0.2rem;
-    
-                //         p{
-                //             margin: 0;
-                //         }
-                //     }
-                // }
             }
     
             .action-prompt{
@@ -403,49 +417,6 @@ body{
                     margin-left:2rem;
                 }
             }
-
-            // .table-search{
-            //     display: flex;
-            //     justify-content: flex-end;
-            //     margin:2rem 0;
-
-            //     #search{
-            //         width:30rem;
-            //     }
-            // }
-    
-            table{
-                border-color:$offblack;
-                font-size:calc(0.45rem + 0.6vw);
-                width:100%;
-                border-collapse: collapse;
-
-                &,
-                th,
-                td{
-                    border:1px solid $offblack;
-                    padding:0.5rem 1rem;
-                }
-
-    
-                tbody{
-    
-                    .org-row{
-                        cursor: pointer;
-    
-                        &:hover{
-                            background-color: $mediumgrey;
-                        }
-                        .highlight{
-                            color:$red;
-                        }
-                        .success{
-                            color:$green;
-                        }
-                    }
-                }
-            }
         }
-
     }
 }

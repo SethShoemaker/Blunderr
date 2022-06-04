@@ -11,15 +11,12 @@
                 <h1>Tickets</h1>
                 <p>List of all tickets</p>
             </div>
-            <div class="dashboard-body">
-                    @if ($isClient)
-                        <div class="dashboard-button">
-                            <a href="{{ route('dashboard.tickets.create') }}" class='btn btn-primary'>Submit Ticket</a>    
-                        </div>
-                    @endif
-                {{-- <div class="table-search">
-                    <input type="text" id="search">
-                </div> --}}
+            <div class="dashboard-body body-table">
+                @if ($isClient)
+                    <div class="dashboard-button">
+                        <a href="{{ route('dashboard.tickets.create') }}" class='btn btn-primary'>Submit Ticket</a>    
+                    </div>
+                @endif
                 <table>
                     <thead>
                         <tr>
