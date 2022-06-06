@@ -20,23 +20,23 @@ textarea,
 textarea:focus,
 select,
 select:focus{
-    border:1.5px solid $offblack !important;
-    border-radius:0 !important;
-    outline:none !important;
-    box-shadow: none !important;
-    padding:7px 11px !important;
-    font-size:calc(0.45rem + 0.6vw) !important;
+    border:1.5px solid $offblack;
+    border-radius:0;
+    outline:none;
+    box-shadow: none;
+    padding:7px 11px;
+    font-size:calc(0.45rem + 0.5vw);
     width:100%;
     margin-top:0.35rem;
     font-family: inherit;
     resize: vertical;
 
     &:focus{
-        border-color:$red !important;
+        border-color:$red;
     }
 
     &:disabled{
-        background-color:$lightgrey !important;
+        background-color:$lightgrey;
     }
 }
 
@@ -69,6 +69,7 @@ select:focus{
         }
     }
 }
+
 #form-buttons{
     margin-top:2rem;
     display: flex;

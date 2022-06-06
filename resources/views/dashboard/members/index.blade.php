@@ -12,6 +12,12 @@
                 <p>List of all organization members</p>
             </div>
             <div class="dashboard-body body-table">
+                <div class="search-container">
+                    <form action="{{ route('dashboard.members.index') }}" method="GET">
+                        <input placeholder="search" type="text" name="search" id="search" role='search' value='{{ $search }}'>
+                        <button class="btn btn-primary"><img src="{{ asset('images/icons/search.svg') }}" alt="Search"></button>
+                    </form>
+                </div>
                 <table class='table table-bordered'>
                     <thead>
                         <tr>
@@ -29,9 +35,9 @@
                                 <td>{{ $member->id }}</td>
                                 <td>{{ $member->name }}</td>
                                 <td>{{ $member->email }}</td>
-                                <td class='{{ $member->title ? '' : 'highlight' }}'>
-                                    {{ $member->title ?? 'unassigned' }}
-                                    @if ($member->title === 'client')
+                                <td class='{{ $member->role_id ? '' : 'highlight' }}'>
+                                    {{ $member->role ?? 'unassigned' }}
+                                    @if ($member->role_id === 1)
                                         ({{ $member->project }})
                                     @endif
                                 </td>

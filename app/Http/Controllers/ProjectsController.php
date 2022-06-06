@@ -20,11 +20,11 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        // implements global scope
-        $projects = Project::all();
 
-        // implements global scope
-        $orgName = Organization::pluck('name')->first();
+        $search = $_GET['search'] ?? null;
+        $projectsQuery = Project::search($search);
+
+        $projects = $projectsQuery->paginate(30);
 
         // Must be at least manager
         $canCreate = Auth::user()->role_id >= 3;
@@ -32,8 +32,8 @@ class ProjectsController extends Controller
         return view(
             'dashboard.projects.index',
             [
+                'search' => $search,
                 'projects' => $projects,
-                'orgName' => $orgName,
                 'canCreate' => $canCreate,
             ]
         );

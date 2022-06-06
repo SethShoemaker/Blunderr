@@ -17,6 +17,12 @@
                         <a href="{{ route('dashboard.tickets.create') }}" class='btn btn-primary'>Submit Ticket</a>    
                     </div>
                 @endif
+                <div class="search-container">
+                    <form action="{{ route('dashboard.tickets.index')}}" method="GET">
+                        <input placeholder='search' type="text" name="search" id="search" role='search' value='{{ $search }}'>
+                        <button class="btn btn-primary"><img src="{{ asset('images/icons/search.svg') }}" alt="Search"></button>
+                    </form>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -38,7 +44,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">There are no tickets</td>
+                                <td colspan="5">No tickets match this search</td>
                             </tr>
                         @endforelse
                     </tbody>

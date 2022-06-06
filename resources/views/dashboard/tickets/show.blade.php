@@ -59,9 +59,13 @@
                                     <form action="{{ route('dashboard.tickets.submit', $ticket->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
-                                        <div class="form-buttons mb-2">
-                                            <button type="submit" class='btn btn-primary'>Submit Ticket</button>
-                                        </div>
+                                        <li>
+                                            <span>
+                                                <div class="form-button">
+                                                    <button type="submit" class='btn btn-primary'>Submit Ticket</button>
+                                                </div>
+                                            </span>
+                                        </li>
                                     </form>
                                 @else
                                     <li>Ticket is under review</li>
@@ -93,7 +97,7 @@
                                 <label for="body">Comment</label>
                                 <textarea name="body" rows='1' id="body"></textarea>
                             </div>
-                            <div class='form-group' id="form-buttons" style='justify-content:flex-end;'>
+                            <div class='form-group' id="form-buttons">
                                 <button class="btn btn-primary">Post</button>
                             </div>
                         </form>

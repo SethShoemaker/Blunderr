@@ -17,7 +17,13 @@
                         <a href="{{ route('dashboard.projects.create') }}" class='btn btn-primary'>Register New Project</a>    
                     @endif
                 </div>
-                <table class='table table-bordered'>
+                <div class="search-container">
+                    <form action="{{ route('dashboard.projects.index') }}" method="GET">
+                        <input placeholder="search" type="text" name="search" id="search" role='search' value='{{ $search }}'>
+                        <button class="btn btn-primary"><img src="{{ asset('images/icons/search.svg') }}" alt="Search"></button>
+                    </form>
+                </div>
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -36,7 +42,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">There are projects registered to {{ $orgName }}</td>
+                                <td colspan="3">No projects match this search</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -29,6 +29,21 @@ class Project extends Model
     }
 
     /**
+     * search query
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param string $search
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $search)
+    {
+        return $query
+            ->select('projects.*')
+            ->where('projects.name', 'LIKE', '%' . $search . '%')
+            ->orWhere('projects.description', 'LIKE', '%' . $search . '%');
+    }
+
+    /**
      * The "booted" method of the model.
      *
      * @return void

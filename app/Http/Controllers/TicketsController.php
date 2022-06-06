@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Models\ticketComment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTicketRequest;
-use App\Models\ticketComment;
 
 class TicketsController extends Controller
 {
+
     /**
      * display tickets. 
      * if user is agent, only show tickets assigned to user.
@@ -22,16 +23,18 @@ class TicketsController extends Controller
     public function index()
     {
 
-        $userRole = Auth::user()->role_id;
-        $isClient = $userRole === 1;
+        $search = $_GET['search'] ?? null;
 
-        // Implements global scope
-        $ticketsQuery = Ticket::withStatusAndProject();
+        $ticketsQuery = Ticket::withStatusAndProject()->search($search);
+
+        $userRole = Auth::user()->role_id;
 
         // If user is agent, only display assigned tickets
         if ($userRole === 2) {
-            $ticketsQuery->where('assigned_agent_id', '=', Auth::id())->get();
+            $ticketsQuery->where('assigned_agent_id', '=', Auth::id());
         }
+
+        $isClient = $userRole === 1;
 
         $tickets = $ticketsQuery->simplePaginate(30);
 
@@ -40,6 +43,7 @@ class TicketsController extends Controller
             [
                 'isClient' => $isClient,
                 'tickets' => $tickets,
+                'search' => $search,
             ]
         );
     }

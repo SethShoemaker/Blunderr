@@ -18,21 +18,17 @@ class MembersController extends Controller
      */
     public function index()
     {
+        $search = $_GET['search'] ?? null;
 
-        $members = DB::table('users')
-            ->select(
-                'users.id',
-                'users.name',
-                'users.email',
-                'user_roles.title',
-                'projects.name AS project'
-            )
-            ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
-            ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
-            ->where('users.org_id', Auth::user()->org_id)
-            ->simplePaginate(30);
+        $members = User::ofOrg()->withRoleAndProject()->search($search)->paginate(30);
 
-        return view('dashboard.members.index')->with('members', $members);
+        return view(
+            'dashboard.members.index',
+            [
+                'search' => $search,
+                'members' => $members
+            ]
+        );
     }
 
     /**
@@ -44,20 +40,8 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        $member = DB::table('users')
-            ->select(
-                'users.id',
-                'users.name',
-                'users.email',
-                'users.created_at',
-                'user_roles.title AS role',
-                'projects.name AS project'
-            )
-            ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
-            ->leftJoin('projects', 'projects.id', '=', 'users.project_id')
-            ->where('users.org_id', Auth::user()->org_id)
-            ->where('users.id', $id)
-            ->first();
+
+        $member = User::grab($id)->ofOrg()->withRoleAndProject()->first();
 
         // Must be owner
         $canEdit = Auth::user()->role_id === 4;

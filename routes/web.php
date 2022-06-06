@@ -59,8 +59,10 @@ Route::prefix('dashboard')->name('dashboard.')->middleware(['verified', 'org_che
     Route::prefix('tickets')->name('tickets.')->controller(TicketsController::class)->group(function () {
 
         Route::GET('', 'index')->name('index');
+
         Route::GET('/submit', 'create')->name('create')->middleware('client_check');
         Route::POST('/submit', 'store')->name('store')->middleware('client_check');
+
         Route::GET('/{id}', 'show')->name('show');
         Route::POST('/{id}/comment', 'comment')->name('comment');
         Route::PATCH('/{id}/assign', 'assign')->name('assign');

@@ -3,7 +3,7 @@
   border: none;
   color: #fff;
   padding: 9px 15px;
-  font-size: calc(0.45rem + 0.6vw);
+  font-size: calc(0.45rem + 0.5vw);
   text-decoration: none;
   font-weight: 400;
   letter-spacing: 0.02rem;
@@ -47,12 +47,12 @@ textarea,
 textarea:focus,
 select,
 select:focus {
-  border: 1.5px solid #191919 !important;
-  border-radius: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  padding: 7px 11px !important;
-  font-size: calc(0.45rem + 0.6vw) !important;
+  border: 1.5px solid #191919;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  padding: 7px 11px;
+  font-size: calc(0.45rem + 0.5vw);
   width: 100%;
   margin-top: 0.35rem;
   font-family: inherit;
@@ -64,7 +64,7 @@ textarea:focus,
 textarea:focus:focus,
 select:focus,
 select:focus:focus {
-  border-color: #bd020b !important;
+  border-color: #bd020b;
 }
 input:disabled,
 input:focus:disabled,
@@ -72,7 +72,7 @@ textarea:disabled,
 textarea:focus:disabled,
 select:disabled,
 select:focus:disabled {
-  background-color: #f3f3f3 !important;
+  background-color: #f3f3f3;
 }
 
 .invalid-feedback {

@@ -95,6 +95,23 @@ class Ticket extends Model
     }
 
     /**
+     * search query
+     * needs previous ticket statuses join
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param string $search
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $search)
+    {
+        return $query
+            ->where('tickets.subject', 'LIKE', '%' . $search . '%')
+            ->orWhere('tickets.body', 'LIKE', '%' . $search . '%')
+            ->orWhere('projects.name', 'LIKE', '%' . $search . '%')
+            ->orWhere('ticket_statuses.status', 'LIKE', '%' . $search . '%');
+    }
+
+    /**
      * Only get tickets for user's organization
      *
      * @return \Illuminate\Database\Eloquent\Builder
