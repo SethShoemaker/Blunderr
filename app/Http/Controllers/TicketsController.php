@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ticketComment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTicketRequest;
+use App\Models\TicketType;
 
 class TicketsController extends Controller
 {
@@ -57,7 +58,15 @@ class TicketsController extends Controller
     {
         $project = Project::GetClientProject()->pluck('name')->first();
 
-        return view('dashboard.tickets.create')->with(['project' => $project]);
+        $ticketTypes = TicketType::all();
+
+        return view(
+            'dashboard.tickets.create',
+            [
+                'project' => $project,
+                'ticketTypes' => $ticketTypes,
+            ]
+        );
     }
 
     /**
@@ -80,6 +89,7 @@ class TicketsController extends Controller
             'status_id' => 1,
             'subject' => $validated['subject'],
             'body' => $validated['body'],
+            'type_id' => $validated['type'],
         ]);
 
         return redirect()->route('dashboard.tickets.show', $ticket->id);
@@ -93,7 +103,7 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::withStatusAndProject()->where('tickets.id', $id)->first();
+        $ticket = Ticket::withStatusAndProjectAndType()->where('tickets.id', $id)->first();
 
         $client = User::find($ticket->client_id);
         $agent = User::find($ticket->assigned_agent_id);

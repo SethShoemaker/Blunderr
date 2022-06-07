@@ -19,6 +19,7 @@ class Ticket extends Model
         'status_id',
         'subject',
         'body',
+        'type_id',
     ];
 
     /**
@@ -54,16 +55,18 @@ class Ticket extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithStatusAndProject($query)
+    public function scopeWithStatusAndProjectAndType($query)
     {
         return $query
             ->select(
                 'projects.name AS project',
                 'tickets.*',
                 'ticket_statuses.status AS status',
+                'ticket_types.type'
             )
             ->join('ticket_statuses', 'ticket_statuses.id', '=', 'tickets.status_id')
-            ->join('projects', 'projects.id', '=', 'tickets.project_id');
+            ->join('projects', 'projects.id', '=', 'tickets.project_id')
+            ->join('ticket_types', 'ticket_types.id', '=', 'tickets.type_id');
     }
 
     /**
@@ -96,7 +99,7 @@ class Ticket extends Model
 
     /**
      * search query
-     * needs previous ticket statuses join
+     * needs previous ticket statuses and types join
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param string $search
@@ -108,7 +111,8 @@ class Ticket extends Model
             ->where('tickets.subject', 'LIKE', '%' . $search . '%')
             ->orWhere('tickets.body', 'LIKE', '%' . $search . '%')
             ->orWhere('projects.name', 'LIKE', '%' . $search . '%')
-            ->orWhere('ticket_statuses.status', 'LIKE', '%' . $search . '%');
+            ->orWhere('ticket_statuses.status', 'LIKE', '%' . $search . '%')
+            ->orWhere('ticket_types.types', 'LIKE', '%' . $search . '%');
     }
 
     /**

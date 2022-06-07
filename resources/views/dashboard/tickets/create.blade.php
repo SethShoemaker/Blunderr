@@ -16,6 +16,15 @@
         </div>
 
         <div class="form-group">
+            <label for="type" class="col-form-label text-md-right">Project</label>
+            <select name="type" id="type">
+                @foreach ($ticketTypes as $ticketType)
+                    <option value='{{ $ticketType->id }}'>{{ $ticketType->type }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="subject" class="col-form-label text-md-right">Subject</label>
             <input id="subject" type="text" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" name="subject" value="{{ old('subject') }}" required autofocus>
             @if ($errors->has('subject'))

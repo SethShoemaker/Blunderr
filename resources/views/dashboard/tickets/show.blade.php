@@ -16,6 +16,7 @@
                     <div class="body-content">
                         <ul>
                             <li>Status:<span>{{ $ticket->status }}</span></li>
+                            <li>Type: <span>{{ $ticket->type }}</span></li>
                             <li>Client:<span>{{ $ticketClientName }}</span></li> 
                             <li>Submitted:<span>{{ date('m-d-Y', strtotime($ticket->created_at)) }}</span></li>
                             @if ($canAssign && !$isComplete)

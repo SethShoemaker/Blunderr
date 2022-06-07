@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CreateUserRolesSeeder::class,
             CreateTicketStatusesSeeder::class,
+            CreateTicketTypesSeeder::class,
             CreateDemoUserSeeder::class,
         ]);
     }

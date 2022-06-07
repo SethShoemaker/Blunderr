@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Organization;
 use App\Models\Project;
 use App\Models\Ticket;
+use App\Models\TicketType;
 use App\Models\userRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -39,15 +40,6 @@ class CreateDemoUserSeeder extends Seeder
         $owner->role_id = $owner_role_id;
         $owner->save();
 
-
-        $client = User::create([
-            'name' => 'demo client',
-            'org_id' => $organization->id,
-            'email' => 'client@demo.net',
-            'email_verified_at' => '2022-05-26 02:04:01',
-            'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
-        ]);
-
         $agent_role_id = userRole::where('title', 'agent')->pluck('id')->first();
 
         $agent = User::create([
@@ -65,6 +57,20 @@ class CreateDemoUserSeeder extends Seeder
             'description' => 'My Awesome Project',
         ]);
 
+        $client_role_id = userRole::where('title', 'client')->pluck('id')->first();
+
+        $client = User::create([
+            'name' => 'demo client',
+            'org_id' => $organization->id,
+            'role_id' => $client_role_id,
+            'project_id' => $project->id,
+            'email' => 'client@demo.net',
+            'email_verified_at' => '2022-05-26 02:04:01',
+            'password' => '$2y$10$OKYRqZ43xKtHyGjUxDZOqOQ2kGYkTFjmz8mQvB.5VEYmCC.Fncv7W',
+        ]);
+
+        $bugType = TicketType::where('type', 'bug')->pluck('id')->first();
+
         Ticket::create([
             'org_id' => $organization->id,
             'project_id' => $project->id,
@@ -72,6 +78,7 @@ class CreateDemoUserSeeder extends Seeder
             'status_id' => 1,
             'subject' => 'Ticket Subject',
             'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores sapiente eveniet accusamus placeat unde voluptatem ad aliquid quod ipsum. Earum suscipit cumque, recusandae quisquam quod libero magnam omnis cupiditate iure laboriosam ipsam ullam totam cum a consequuntur numquam distinctio ipsa. Vitae praesentium obcaecati dolore cumque? Officia nulla recusandae quibusdam consequuntur sit dolorem ullam quidem ut illum voluptatum repellat, explicabo eos magni neque. Amet ex numquam perferendis. Sequi sapiente voluptatum at culpa voluptatibus, ea quibusdam velit, itaque soluta nostrum hic dignissimos ducimus sunt cumque voluptatem. Est ipsa libero deleniti sed facilis provident, quam vero dolorum culpa dolor sint eum architecto voluptate',
+            'type_id' => $bugType,
         ]);
     }
 }
