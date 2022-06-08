@@ -32,6 +32,12 @@
 body {
   background-color: #f3f3f3;
 }
+body::-webkit-scrollbar {
+  width: 0;
+}
+body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:hover {
+  width: 0;
+}
 
 #navbar {
   top: 0;

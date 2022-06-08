@@ -26,7 +26,7 @@ class TicketsController extends Controller
 
         $search = $_GET['search'] ?? null;
 
-        $ticketsQuery = Ticket::withStatusAndProject()->search($search);
+        $ticketsQuery = Ticket::withStatusAndProjectAndType()->search($search);
 
         $userRole = Auth::user()->role_id;
 

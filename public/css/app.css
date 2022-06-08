@@ -152,16 +152,6 @@ body {
   font-family: "Noto Sans", sans-serif;
   overflow-x: hidden;
 }
-body::-webkit-scrollbar {
-  width: 12px !important;
-}
-body::-webkit-scrollbar-track {
-  background-color: #e4e4e4 !important;
-}
-body::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb:hover {
-  width: 10px !important;
-  background-color: #c4c4c4 !important;
-}
 body p {
   line-height: calc(1.2rem + 0.4vw);
 }

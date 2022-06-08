@@ -27,8 +27,8 @@
                     <thead>
                         <tr>
                             <th>Project</th>
+                            <th>Type</th>
                             <th>Subject</th>
-                            <th>Body</th>
                             <th>Status</th>
                             <th>Date Submitted</th>
                         </tr>
@@ -37,8 +37,8 @@
                         @forelse ($tickets as $ticket)
                             <tr class='org-row' data-href='{{ route('dashboard.tickets.show', $ticket->id)}}'>
                                 <td>{{ $ticket->project }}</td>
+                                <td>{{ $ticket->type }}</td>
                                 <td>{{ $ticket->subject }}</td>
-                                <td>{{ Str::limit($ticket->body, 20) }}</td>
                                 <td class='{{ $ticket->status_id === 1 || $ticket->status_id === 3 ? 'highlight' : ' ' }}{{ $ticket->status_id === 4 ? 'success' : ' ' }}'>{{ $ticket->status }}</td>
                                 <td>{{ date('m-d-Y', strtotime($ticket->created_at)) }}</td>
                             </tr>

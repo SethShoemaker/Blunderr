@@ -112,7 +112,7 @@ class Ticket extends Model
             ->orWhere('tickets.body', 'LIKE', '%' . $search . '%')
             ->orWhere('projects.name', 'LIKE', '%' . $search . '%')
             ->orWhere('ticket_statuses.status', 'LIKE', '%' . $search . '%')
-            ->orWhere('ticket_types.types', 'LIKE', '%' . $search . '%');
+            ->orWhere('ticket_types.type', 'LIKE', '%' . $search . '%');
     }
 
     /**
