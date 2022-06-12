@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use App\Models\ticketComment;
+use App\Models\TicketComment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTicketRequest;
 use App\Models\TicketType;
