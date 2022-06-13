@@ -1,24 +1,51 @@
 # Blunderr
 
-Blunderr is an application for organizations that need to manage help tickets
-Once a registered user creates or joins an organization, they are given a role so that they can help manage their organization's incoming tickets.
+## [Live at Blunderr.net](https://blunderr.net)
+
+Blunderr is a web application built to allow organizations to track bugs in their software products.
+Organizations register themselves and the projects they have created, then assign clients to the projects.
+Clients then submit help tickets which will be processed by the development team.
+The development team consists of an organization owner, managers, and agents.
+The owner and the managers see incoming tickets and assign an agent to solve the problem.
+The agent sees the ticket, creates a solution, then sends it back to the owner and managers.
+If the owner or manager reviewing the ticket is satisfied with the agent's solution, they can approve the ticket and the status will be marked completed.
+
+## Registering
+
+Registering with Blunderr is easy, and free.
+
+#### Creating account
+
+When registering, you will fill out your name and email, as well as a password for accessing your account.
+Afterwards, you will be sent an email which will verify your account and allow you to continue.
+When the account is successfully created and verfified, you will need to join or create an organization.
+
+#### Joining existing organization
+
+When joining an existing organization, you will need to fill out the existing organization's name, and the password.
+If you do not know the password, ask the organization owner.
+If the information you entered is correct, then you will become a member of the organization.
+
+#### Creating new organization
+
+If you are registering a new organization, you will need to fill in the name, description (optional), and a password.
+Once the organization is created, you will be assigned the 'owner' role, and will enter your dashboard.
 
 ## Roles
 
-Blunderr uses roles to help manage each organization member's responsibility.
-The roles are owners, managers, agents and clients.
+In order to handle different functions within an organization, each member will have a role. The organization owner will be able to assign people different roles.
 
-#### Owners
+#### Owner
 
-The organization owner is able to many things. They manage the organization details like name and description. The manage the other organization members and their respective roles. And they Also can take on the job as the manager and assign agents to certain help tickets.
+The owner has the highest role within an organization, and they have special abilities no other role has. As mentioned before the owner is able to assign other orgnization members to different roles. They are also able to do everything that the managers are able to do.
 
 #### Managers
 
-Managers are in charge of registering new projects that the organization is creating for clients. Once the organization owner assigns a client to that specific project, the manager can assign agents from their organization to the incoming help tickets. Once the assigned agent is satisfied with their solution, they will send it back to the managers where they can approve it.
+Managers are the organization members that are responsible for managing the work being done on the tickets. Unlike the agents, they are able to see all of the incoming tickets, and are able to assign the tickets to agents. Once the assigned agent is completed with the work needed for the ticket, they can approve the ticket, dissaprove the ticket, and also change the assigned agent. The managers are directly responsible for ensuring the work being done on a ticket is good enough to satisfy the customer.
 
 #### Agents
 
-Agents' primary responsibility is to create the solutions that the client needs. In their dashboard they will see a list of tickets that their managers have assigned them to complete. Once they are satisfied with their solution, they will send the ticket to the managers, and the ticket will be 'under review' until the managers are satisfied with the results.
+Agents are responsible for addressing the issues brought up by the clients. In an agent's dashboard they will see a list of tickets that they are assigned to. Once they solve the issue propsosed in the ticket they will submit it to the managers, where it will either be approved or disapproved.
 
 #### Clients
 
