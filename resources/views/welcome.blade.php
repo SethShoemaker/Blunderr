@@ -91,6 +91,14 @@
                     Once they solve the issue propsosed in the ticket they will submit it to the managers, where it will either be approved or disapproved.
                 </p>
             </div>
+            <div>
+                <h3>Agents</h3>
+                <p>
+                    The clients for the projects will have a means to submit help tickets for issues with their project. 
+                    In their dashboard, they will have their own list of tickets submitted for their project, 
+                    whether it be their own or another clients'. The list will list the tickets' statuses so that they can see progress being made on their ticket.
+                </p>
+            </div>
         </section>
     </div>
 @endsection
