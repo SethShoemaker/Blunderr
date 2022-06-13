@@ -92,7 +92,7 @@
                 </p>
             </div>
             <div>
-                <h3>Agents</h3>
+                <h3>Clients</h3>
                 <p>
                     The clients for the projects will have a means to submit help tickets for issues with their project. 
                     In their dashboard, they will have their own list of tickets submitted for their project, 
